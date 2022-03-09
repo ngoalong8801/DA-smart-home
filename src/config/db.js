@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-require('custom-env').env('development')
-const uri = process.env.MONGODB_URI;
 
+const uri = process.env.MONGODB_URI;
+console.log(uri)
 async function connect() {
     try {
         await mongoose.connect(uri, {
