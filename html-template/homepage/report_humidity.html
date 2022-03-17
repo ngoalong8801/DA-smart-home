@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="./report.css">
+    <script>
+        const data = [15, 17, 27, 15, 17, 22, 16];
+
+        window.onload = function() {
+            const sum = data.reduce((a, b) => {
+                return a + b;
+
+            }, 0)
+            const avarage = (sum / (data.length)).toFixed(2);
+            document.querySelector(".avarage span").innerHTML = `${avarage} %`;
+
+            var dps = [];
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                title: {
+                    text: " Average Humidity"
+                },
+                axisX: {
+                    title: "Time"
+                },
+                axisY: {
+                    title: "Percentage",
+                    suffix: " %",
+                    includeZero: true
+                },
+                data: [{
+                    type: "line",
+
+
+
+                    yValueFormatString: "#,##0.##\"%\"",
+                    connectNullData: true,
+
+
+                    dataPoints: [{
+                        label: "Monday",
+                        y: 15,
+
+                    }, {
+                        label: "Tuesday",
+                        y: 17,
+
+                    }, {
+                        label: "Wednesday",
+                        y: 27,
+
+                    }, {
+                        label: "Thursday",
+                        y: 15,
+
+                    }, {
+                        label: "Friday",
+                        y: 17,
+
+                    }, {
+                        label: "Saturday",
+                        y: 22,
+
+                    }, {
+                        label: "Sunday",
+                        y: 16,
+
+                    }]
+                }]
+            });
+            chart.render();
+            // function updateData() {
+            //     nums.forEach((num, index) => {
+            //         dps.push({
+            //             x: Number(num),
+            //             y: cols[index]
+            //         });
+            //     })
+
+            // }
+            // updateData()
+
+
+        }
+    </script>
+</head>
+
+<body>
+    <div id="chartContainer" style="height: 300px; width: 100%;">
+
+    </div>
+    <div class="avarage">
+        <span>22 %</span>
+    </div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+
+</html>
