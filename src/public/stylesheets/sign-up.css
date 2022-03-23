@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #17a2b8;
+    height: 100vh;
+}
+
+#login .container #login-row #login-column #login-box {
+    max-width: 400px;
+    height: 500px;
+    border: 1px solid #9C9C9C;
+    background-color: #EAEAEA;
+}
+
+#login .container #login-row #login-column #login-box #login-form {
+    padding: 20px;
+}
+
+#login .container #login-row #login-column #login-box #login-form h2 {
+    margin-bottom: 50px;
+    margin-top: 30px;
+}
+
+#login .container #login-row #login-column #login-box #login-form #forget-link {
+    font-size: 12px;
+}
+
+#login .container #login-row #login-column #login-box #login-form .form-group #submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}

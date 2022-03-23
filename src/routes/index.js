@@ -1,10 +1,11 @@
-var express = require('express');
-var router = express.Router();
+const siteRoutes = require('./site')
+const userRoutes = require('./users')
+const deviceRoutes = require('./devices')
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Express' });
-});
+function route(app) {
+    app.use('/', siteRoutes);
+    app.use('/', userRoutes)
+    app.use('/', deviceRoutes)
+}
 
-
-module.exports = router;
+module.exports = route;
