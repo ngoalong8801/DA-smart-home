@@ -1,3 +1,4 @@
+const { use } = require('../../app');
 const User = require('../models/userModel');
 
 
@@ -10,8 +11,27 @@ class UserController {
         })
 
         newUser.save()
-            .then(() => res.redirect('signup'))
-            .catch(err => res.json(err))
+            .then(() => res.send("ok"))
+            .catch(err => {console.log("dfs"); res.json(err)})
+    }
+
+    deleteUser(req, res) {
+        let userID = req.body.userID
+        console.log(req.body)
+        User.deleteOne({_id: userID})
+            .then(() => {
+                res.send("deleted")
+            })
+            .catch(() => {
+                res.send("cannot delete")
+            })
+    }
+
+    getAllUsers(req, res) {
+        User.find({})
+            .then(function(doc) {
+                res.send(doc)
+            })
     }
 }
 
