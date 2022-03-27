@@ -13,6 +13,19 @@ class UserController {
             .then(() => res.redirect('signup'))
             .catch(err => res.json(err))
     }
+
+    getPageLogin(req, res, next) {
+        res.render('users/login', {layout: false});
+    }
+
+    checkLogOut(req, res, next) {
+        if (req.isAuthenticated()) {
+        return res.redirect("/");
+    }
+    next();
+    }
+
+
 }
 
 module.exports = new UserController();
