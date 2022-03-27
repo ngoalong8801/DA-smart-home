@@ -33,6 +33,19 @@ class UserController {
                 res.send(doc)
             })
     }
+
+    getPageLogin(req, res, next) {
+        res.render('users/login', {layout: false});
+    }
+
+    checkLogOut(req, res, next) {
+        if (req.isAuthenticated()) {
+        return res.redirect("/");
+    }
+    next();
+    }
+
+
 }
 
 module.exports = new UserController();

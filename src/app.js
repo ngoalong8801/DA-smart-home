@@ -7,6 +7,10 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 const route = require('./routes/index');
 
+var passport = require('passport');
+var session = require('express-session');
+var flash = require('connect-flash');
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -36,13 +40,26 @@ app.engine( 'hbs', exphbs.engine( {
   partialsDir: __dirname + '/resources/views/partials/'
 }));
 
+app.use(flash());
+
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
+//app use session to identify each user and information when authenticated to system
+app.use(session({
+    secret: process.env.SECERT_SESSION_KEY,
+    resave: true,
+    saveUninitialized: false
+}))
+app.use(passport.initialize());
+app.use(passport.session());
 
 route(app);
 // catch 404 and forward to error handler

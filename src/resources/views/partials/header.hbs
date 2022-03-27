@@ -16,11 +16,16 @@
                 </button>
             </div>
             <div class="home__header__user">
+                {{#if user}}
+                               <p> {{user.userName}}</p>
+                               <a href="/users/logout">Log out</a>
+                    {{/if}}
                 <i class="fa-solid fa-bell"></i>
                 <i class="fa-solid fa-user"></i>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                         <i class="fa-solid fa-user"></i>
+                        
                         <div class="user__info">
                             <span>tin phan</span>
                             <span>@tin-phan-1</span>

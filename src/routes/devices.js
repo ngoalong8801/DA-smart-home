@@ -4,7 +4,11 @@ var router = express.Router();
 
 
 router.get('/:id/aircondition', function (req, res) {
-    res.render('devices/aircondition')
+    var user = {}
+        if(req.user){
+            user = JSON.parse(JSON.stringify(req.user));
+            }
+    res.render('devices/aircondition', {user: user})
 })
 
 router.get('/:id/gasconcentration', function (req, res) {
