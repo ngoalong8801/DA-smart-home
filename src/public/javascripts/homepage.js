@@ -20,7 +20,7 @@ const fakeDataFeatures = [
     { icon: "fa-solid fa-lightbulb", name: "lightbulb", type: "light" },
     { icon: "fa-solid fa-temperature-quarter", name: "temperature", type: "temperature" },
     { icon: "fa-solid fa-air-conditioner", name: "airConditioner", type: "aircondition" },
-    { icon: "fa-solid fa-gas-pump", name: "gasPump", type: "gasconsen" },
+    { icon: "fa-solid fa-gas-pump", name: "gasPump", type: "gasconcen" },
 ];
 
 const homeRoomWrapper = document.querySelector(".home__room__wrapper");
@@ -31,7 +31,7 @@ var htmls = fakeDataRoom.map((item, index) => {
     const { room, numDevices, img } = item;
     return `
 	<div class="col-sm-6">
-		<a href="room/room">
+		<a href="room">
 			<div class="home__room__item ">
 				<div class="home__room__item__info">
 					<h2>${room}</h2>
