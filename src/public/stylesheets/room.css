@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+}
+
+html {
+    width: 60%;
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    color: #333;
+    background: #fff;
+}
+
+section {
+    padding: 2rem 0;
+}
+
+.fa-arrow-left {
+    font-size: 40px;
+    color: rgb(41, 23, 139);
+}
+
+section h1 {
+    width: 100%;
+    margin: 0 auto;
+    font-size: 60px;
+    /* line-height: 50px; */
+    align-items: center;
+    text-align: center;
+    font-size: 40px;
+    color: green;
+}
+
+
+/* 
+section {
+    border: 1px solid black;
+} */
+
+.devices {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.device-info {
+    margin-top: 15px;
+}
+
+.device-info img {
+    width: 100%;
+    /* height: 200px; */
+    border-radius: .5rem;
+}
+
+.device-info h3 {
+    margin-bottom: 0;
+}
+
+.device-info span {
+    margin-bottom: 15px;
+}
