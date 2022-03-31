@@ -18,17 +18,32 @@ const fakeDataRoom = [
 	{room: "kitchen", numDevices: 4, img: "/images/kitchen.avif"},
 ];
 const fakeDataFeatures = [
-	{icon: "fa-solid fa-lightbulb", name: "lightbulb"},
-	{icon: "fa-solid fa-temperature-quarter", name: "temperature"},
-	{icon: "fa-solid fa-air-conditioner", name: "airConditioner"},
-	{icon: "fa-solid fa-gas-pump", name: "gasPump"},
+	{
+		name: "fan",
+		img: "https://img.icons8.com/external-xnimrodx-blue-xnimrodx/64/000000/external-fan-computer-xnimrodx-blue-xnimrodx.png",
+		link: "/fanRoom",
+	},
+	{
+		name: "aircondition",
+		img: "https://img.icons8.com/external-itim2101-flat-itim2101/64/000000/external-air-conditioner-household-equipment-itim2101-flat-itim2101.png",
+		link: "/airconditionRoom",
+	},
+	{
+		name: "light",
+		img: "https://img.icons8.com/external-flaticons-flat-flat-icons/64/000000/external-light-lighting-flaticons-flat-flat-icons.png",
+		link: "/lightRoom",
+	},
+	{
+		name: "gas",
+		img: "https://img.icons8.com/external-icongeek26-flat-icongeek26/64/000000/external-gas-cafe-icongeek26-flat-icongeek26.png",
+		link: "/gasRoom",
+	},
 ];
 
 const homeRoomWrapper = document.querySelector(".home__room__wrapper");
 const homeDeviceIcons = document.querySelector(".home__device__icons");
 
 var htmls = fakeDataRoom.map((item, index) => {
-	console.log(item);
 	const {room, numDevices, img} = item;
 	return `
 	<div class="col-sm-6">
@@ -49,9 +64,12 @@ homeRoomWrapper.innerHTML = htmls.join("");
 
 var htmls1 = fakeDataFeatures.map((item, index) => {
 	return `
+	
 	<div class="home__device__icon">
+	<a href=${item.link}>
 	<span>${item.name}</span>
-	<i class="${item.icon}"></i>
+	<img src=${item.img} alt="">
+	</a>
 </div>
 	`;
 });

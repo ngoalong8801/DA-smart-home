@@ -1,5 +1,5 @@
-var SiteController = require('../app/controllers/siteController')
-var express = require('express');
+var SiteController = require("../app/controllers/siteController");
+var express = require("express");
 var router = express.Router();
 
 /* GET home page. */
@@ -8,6 +8,6 @@ var router = express.Router();
 //      res.render('homepage/home', {user: user });
 //  });
 
-router.get('/', SiteController.requireLogin, SiteController.getHomePage)
+router.get("/", SiteController.requireLogin, SiteController.getHomePage);
 
 module.exports = router;

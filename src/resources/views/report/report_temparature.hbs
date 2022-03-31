@@ -1,0 +1,80 @@
+   <link rel="stylesheet" href="/stylesheets/report.css">
+ 
+<div class="report_container">
+     <div id="chartContainer" >
+
+    </div>
+    <div class="avarage">
+     <span>22°C</span>
+    </div>
+</div>
+
+
+    <script>
+        const data = [15, 17, 27, 15, 17, 22, 16];
+
+        window.onload = function() {
+            const sum = data.reduce((a, b) => {
+                return a + b;
+
+            }, 0)
+            const avarage = (sum / (data.length)).toFixed(2);
+            document.querySelector(".avarage span").innerHTML = `${avarage} °C`;
+
+            var dps = [];
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                title: {
+                    text: " Average Temperature"
+                },
+                axisX: {
+                    title: "Time"
+                },
+                axisY: {
+                    title: "Percentage",
+                    suffix: " °C",
+                    includeZero: true
+                },
+                data: [{
+                    type: "line",
+                    connectNullData: true,
+                    yValueFormatString: "#,##0.##\"°C\"",
+                    xValueType: "dateTime",
+
+                    dataPoints: [{
+                        label: "Monday",
+                        y: 15,
+
+                    }, {
+                        label: "Tuesday",
+                        y: 17,
+
+                    }, {
+                        label: "Wednesday",
+                        y: 27,
+
+                    }, {
+                        label: "Thursday",
+                        y: 15,
+
+                    }, {
+                        label: "Friday",
+                        y: 17,
+
+                    }, {
+                        label: "Saturday",
+                        y: 22,
+
+                    }, {
+                        label: "Sunday",
+                        y: 16,
+
+                    }]
+                }]
+            });
+            chart.render();
+
+
+        }
+    </script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>

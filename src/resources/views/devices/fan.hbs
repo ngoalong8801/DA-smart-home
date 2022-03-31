@@ -1,0 +1,138 @@
+
+       <link rel="stylesheet" href="/stylesheets/fan.css">
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <div class="fan">
+        <div class="swiper mySwiper fan__devices__wrapper ">
+            <div class="swiper-wrapper fan__devices">
+                <div class="swiper-slide fan__devices__item">
+                    <div class="fan__devices__item__image">
+                       <img src="/images/fan.png" alt="">
+                        <img src="/images/fan (1).png" alt="">
+                    </div>
+                    <span>fan 1</span>
+                </div>
+                <div class="swiper-slide fan__devices__item">
+                    <div class="fan__devices__item__image">
+                       <img src="/images/fan.png" alt="">
+                        <img src="/images/fan (1).png" alt="">
+                    </div>
+                    <span>fan 2</span></div>
+                <div class="swiper-slide fan__devices__item">
+                    <div class="fan__devices__item__image">
+                          <img src="/images/fan.png" alt="">
+                        <img src="/images/fan (1).png" alt="">
+                    </div>
+                    <span>fan 3</span></div>
+                <div class="swiper-slide fan__devices__item">
+                    <div class="fan__devices__item__image">
+                        <img src="/images/fan.png" alt="">
+                        <img src="/images/fan (1).png" alt="">
+                    </div>
+                    <span>fan 4</span></div>
+                <div class="swiper-slide fan__devices__item">
+                    <div class="fan__devices__item__image">
+                        <img src="/images/fan.png" alt="">
+                        <img src="/images/fan (1).png" alt="">
+                    </div>
+                    <span>fan 5</span></div>
+                <div class="swiper-slide fan__devices__item">
+                    <div class="fan__devices__item__image">
+                        <img src="/images/fan.png" alt="">
+                        <img src="/images/fan (1).png" alt="">
+                    </div>
+                    <span>fan 6</span></div>
+                <div class="swiper-slide fan__devices__item">
+                    <div class="fan__devices__item__image">
+                        <img src="/images/fan.png" alt="">
+                        <img src="/images/fan (1).png" alt="">
+                    </div>
+                    <span>fan 7</span></div>
+
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+
+        <div class="fan__content">
+            <div class="fan__content__title">
+                <strong>fan 1</strong>
+            </div>
+            <div class="fan__content__image">
+                <img src="https://www.ushafans.com/sites/default/files/lifestyle-fan.png" alt="">
+            </div>
+            <p>25 °C</p>
+        </div>
+        <div class="fan__control">
+            <div class="fan__control__title">
+                <span>Mode</span>
+                <button type="button" class="btn btn-primary">Auto</button>
+                <label class="switch">
+                <input type="checkbox" class="checkbox">
+                <span class="slider round"></span>
+              </label>
+             
+            </div>
+            <div class="fan__control__item">
+                <strong>Time On</strong>
+                <div class="fan__control__item__input">
+                 <input type="number" value="10">
+                 <label for="">h</label>
+                </div>
+                <div class="fan__control__item__input">
+                 <input type="number" value="10">
+                 <label for="">m</label>
+                </div>
+            </div>
+            <div class="fan__control__item">
+                <strong>Time Off</strong>
+                <div class="fan__control__item__input">
+                 <input type="number" value="10">
+                 <label for="">h</label>
+                </div>
+                <div class="fan__control__item__input">
+                
+                 <input type="number" value="10">
+                 <label for="">m</label>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+
+
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<script>
+    var swiper = new Swiper(".mySwiper", {
+	slidesPerView: 1,
+	spaceBetween: 10,
+	pagination: {
+		el: ".swiper-pagination",
+		clickable: true,
+	},
+	breakpoints: {
+		"@0.00": {
+			slidesPerView: 1,
+			spaceBetween: 10,
+		},
+		"@0.75": {
+			slidesPerView: 2,
+			spaceBetween: 20,
+		},
+		"@1.00": {
+			slidesPerView: 3,
+			spaceBetween: 40,
+		},
+		"@1.50": {
+			slidesPerView: 4,
+			spaceBetween: 50,
+		},
+	},
+});
+
+</script>
+{{!-- <script src="./script5.js"></script> --}}
+

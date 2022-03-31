@@ -1,0 +1,24 @@
+.report_container {
+    margin-top: 50px;
+    padding: 0 5%;
+}
+
+#chartContainer {
+    position: relative;
+    /* padding-right: 400px; */
+    height: 300px;
+    width: 100%;
+}
+
+.avarage {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.avarage span {
+    font-size: 30px;
+    color: red;
+    font-weight: bold;
+}
