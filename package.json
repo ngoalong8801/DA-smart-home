@@ -1,10 +1,9 @@
 {
-<<<<<<< HEAD
     "name": "src",
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "start": "nodemon src/app.js"
+        "start": "node ./bin/www"
     },
     "dependencies": {
         "body-parser": "^1.19.2",
@@ -16,7 +15,7 @@
         "express-handlebars": "^6.0.3",
         "express-session": "^1.17.2",
         "hbs": "~4.0.4",
-        "http-errors": "~1.6.3",
+        "http-errors": "^1.6.3",
         "mongoose": "^6.2.4",
         "morgan": "~1.9.1",
         "nodemon": "^2.0.15",
@@ -25,30 +24,3 @@
         "session": "^0.1.0"
     }
 }
-=======
-  "name": "src",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
-  "dependencies": {
-    "body-parser": "^1.19.2",
-    "connect-flash": "^0.1.1",
-    "cookie-parser": "~1.4.4",
-    "custom-env": "^2.0.1",
-    "debug": "~2.6.9",
-    "express": "~4.16.1",
-    "express-handlebars": "^6.0.3",
-    "express-session": "^1.17.2",
-    "hbs": "~4.0.4",
-    "http-errors": "^1.6.3",
-    "mongoose": "^6.2.4",
-    "morgan": "~1.9.1",
-    "nodemon": "^2.0.15",
-    "passport": "^0.5.2",
-    "passport-local": "^1.0.0",
-    "session": "^0.1.0"
-  }
-}
->>>>>>> 39fcf5a0bce5c7ac31c437b4aa0ce4332b4fe7ad
