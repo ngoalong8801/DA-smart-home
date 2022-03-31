@@ -12,7 +12,7 @@ class UserController {
 
         newUser.save()
             .then(() => res.send("ok"))
-            .catch(err => {console.log("dfs"); res.json(err)})
+            .catch(err => {res.json(err)})
     }
 
     deleteUser(req, res) {
@@ -22,16 +22,17 @@ class UserController {
             .then(() => {
                 res.send("deleted")
             })
-            .catch(() => {
-                res.send("cannot delete")
-            })
+
     }
 
     getAllUsers(req, res) {
         User.find({})
             .then(function(doc) {
-                res.send(doc)
+                res.send({
+                    loggedIn: true,
+                    data: doc})
             })
+            .catch((err) => res.send("dsf"))
     }
 
     getPageLogin(req, res, next) {
