@@ -13,20 +13,17 @@
                             <img src="/images/communicator-radio-military-force-isolated-icon-free-vector.jpg">
                         </div>
                         <div class="concentration" style="flex-grow: 1;">
-                            <span style="color: rgb(10, 87, 80)">Concentration: <span
-                                    style="color: #103f32 ;font-weight:500 ">30</span> PPM
+                            <span style="color: rgb(10, 87, 80)">Concentration: <span id="value"
+                                    style="color: #103f32 ;font-weight:500 "></span> PPM
                             </span>
                         </div>
                     </div>
 
                     <div class=" card-body ">
-                        <div class="card-body-item ">
-                            <span>
-                                <i class="fa-solid fa-helmet-safety fa-2xl "></i>
-                                = 30 PPM Safety 
-                            </span>
+                        <div class="card-body-item "><span><i class="fa-solid fa-helmet-safety fa-2xl "></i>
+                                <= 1 PPM Safety </span>
                         </div>
-                        <div class="card-body-item "><i class="fa-solid fa-fire fa-2xl "></i> > 30 PPM Danger
+                        <div class="card-body-item "><i class="fa-solid fa-fire fa-2xl "></i> > 1 PPM Danger
                             </divclass=>
                         </div>
                     </div>
@@ -34,4 +31,33 @@
                 </div>
             </div>
         </div>
-    </div>
+
+        <script src="http://code.jquery.com/jquery-latest.min.js" ></script>
+<script>    
+    $(document).ready(function(){
+ setInterval(fetchdata,500);
+});
+
+    function fetchdata(){ 
+    // add rest = true and jsonp = true to /etc/mongodb.conf, 
+    // then restart mongodb
+         $.ajax({
+                url: "https://io.adafruit.com/api/v2/DAFS/feeds/gas/data",
+                type: 'get',
+                dataType: 'json',
+                jsonp: 'json', // mongodb is expecting that                                                                                     
+            })
+            .done(function(data) {
+                console.log(data[0].value)
+               // $("code").text(d).css("color","green");
+               $('#value').text(data[0].value);
+            })
+            .fail(function(request,status,error) {
+                $("code").text("get failed: "+error).css("color","red");
+            })
+            .always(function() {
+                console.log("finished")
+            })
+
+  };
+</script>
