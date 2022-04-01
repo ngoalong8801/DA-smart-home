@@ -19,7 +19,7 @@
         <div class="temp-air-condition">
           <span class="temp-setting">Off</span>
           <label class="switch">
-            <input type="checkbox" />
+            <input id="on-off" type="checkbox" />
             <span class="slider round"></span>
           </label>
 
@@ -107,12 +107,44 @@
             </div>
         </div>
 
-        <script src="http://code.jquery.com/jquery-latest.min.js" ></script>
+<script src="http://code.jquery.com/jquery-latest.min.js" ></script>
 <script>    
     $(document).ready(function(){
  setInterval(fetchdata,500);
+ setInterval(fetchdata1,500);
+
+
+$('#on-off').change(function(){
+   if($('#on-off').is(":checked")){
+     data = {value : '1'}
+  }
+  else{
+    data = {value : '0'}
+  }
+
+  fetch('https://io.adafruit.com/api/v2/DAFS/feeds/led/data', {
+  method: 'POST', // or 'PUT'
+  headers: {
+    'Content-Type': 'application/json',
+    'X-AIO-Key' : 'aio_sUsu09eLqbW5BFywqyAXwuXSTcDh'
+  },
+  body: JSON.stringify(data),
+})
+.then(response => response.json())
+.then(data => {
+  console.log('Success:', data);
+})
+.catch((error) => {
+  console.error('Error:', error);
 });
 
+})
+ 
+  
+
+
+
+});
     function fetchdata(){ 
     // add rest = true and jsonp = true to /etc/mongodb.conf, 
     // then restart mongodb
@@ -133,6 +165,35 @@
             .always(function() {
                 console.log("finished")
             })
-
   };
+
+  function fetchdata1(){ 
+    // add rest = true and jsonp = true to /etc/mongodb.conf, 
+    // then restart mongodb
+         $.ajax({
+                url: "https://io.adafruit.com/api/v2/DAFS/feeds/led/data",
+                type: 'get',
+                dataType: 'json',
+                jsonp: 'json', // mongodb is expecting that                                                                                     
+            })
+            .done(function(data) {
+                console.log(data[0].value)
+               // $("code").text(d).css("color","green");
+                if(data[0].value != 0 ){
+                 $('#on-off').prop('checked', true);
+                }
+                else{
+                  $('#on-off').prop('checked', false);
+                }
+                console.log($('#on-off').is(":checked"))
+            })
+            .fail(function(request,status,error) {
+                $("code").text("get failed: "+error).css("color","red");
+            })
+            .always(function() {
+                console.log("finished")
+            })
+  };
+
+
 </script>
