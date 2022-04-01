@@ -116,17 +116,17 @@
 
 $('#on-off').change(function(){
    if($('#on-off').is(":checked")){
-     data = {value : '1'}
+     data = {value : '3'}
   }
   else{
-    data = {value : '0'}
+    data = {value : '2'}
   }
 
   fetch('https://io.adafruit.com/api/v2/DAFS/feeds/led/data', {
   method: 'POST', // or 'PUT'
   headers: {
     'Content-Type': 'application/json',
-    'X-AIO-Key' : 'aio_sUsu09eLqbW5BFywqyAXwuXSTcDh'
+    'X-AIO-Key' : 'aio_ybEe57IpNf9vUtBlfhHmQP4NbrJj'
   },
   body: JSON.stringify(data),
 })
@@ -179,7 +179,7 @@ $('#on-off').change(function(){
             .done(function(data) {
                 console.log(data[0].value)
                // $("code").text(d).css("color","green");
-                if(data[0].value != 0 ){
+                if(data[0].value == 3){
                  $('#on-off').prop('checked', true);
                 }
                 else{
