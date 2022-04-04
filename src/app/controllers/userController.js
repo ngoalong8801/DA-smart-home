@@ -5,7 +5,7 @@ const User = require('../models/userModel');
 class UserController {
     addUser(req, res) {
         let newUser = new User({
-            fullName: req.body.fullName,
+            role: req.body.role,
             userName: req.body.userName,
             password: req.body.password
         })
@@ -46,7 +46,36 @@ class UserController {
     next();
     }
 
+    // management
+    UserManage(req, res) {
+        User.find({}).lean()
+            .then(function(users) {
+                console.log(users)
+                res.render('management/user_management', {users})
+            })
+    }
 
+    addNewUser(req, res) {
+        let newUser = new User({
+            role: req.body.role,
+            userName: req.body.userName,
+            password: req.body.password
+        })
+
+        newUser.save()
+            .then(() => res.redirect("/management"))
+            .catch(err => {res.json(err)})
+    }
+
+    removeUser(req, res) {
+        let userID = req.body.userID
+        User.deleteOne({_id: userID})
+            .then(() => {
+                res.redirect('/management')
+            })
+
+    }
+    //
 }
 
 module.exports = new UserController();
