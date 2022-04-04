@@ -8,6 +8,6 @@ var router = express.Router();
 //      res.render('homepage/home', {user: user });
 //  });
 
-router.get("/", SiteController.requireLogin, SiteController.getHomePage);
+router.get("/", SiteController.getHomePage);
 
 module.exports = router;

@@ -1,6 +1,4 @@
-
-
- <link rel="stylesheet" href="/stylesheets/air-ver1.css">
+<link rel="stylesheet" href="/stylesheets/air-ver1.css">
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
  <script src="https://kit.fontawesome.com/cba7995b4a.js" crossorigin="anonymous"></script>
 
@@ -105,46 +103,38 @@
 
                 </div>
             </div>
-        </div>
+          </div>
 
 <script src="http://code.jquery.com/jquery-latest.min.js" ></script>
 <script>    
     $(document).ready(function(){
- setInterval(fetchdata,500);
- setInterval(fetchdata1,500);
-
-
-$('#on-off').change(function(){
-   if($('#on-off').is(":checked")){
-     data = {value : '3'}
-  }
-  else{
-    data = {value : '2'}
-  }
-
-  fetch('https://io.adafruit.com/api/v2/DAFS/feeds/led/data', {
-  method: 'POST', // or 'PUT'
-  headers: {
-    'Content-Type': 'application/json',
-    'X-AIO-Key' : 'aio_ybEe57IpNf9vUtBlfhHmQP4NbrJj'
-  },
-  body: JSON.stringify(data),
-})
-.then(response => response.json())
-.then(data => {
-  console.log('Success:', data);
-})
-.catch((error) => {
-  console.error('Error:', error);
+            setInterval(fetchdata,500);
+            setInterval(fetchdata1,500);
+            $('#on-off').change(function(){
+                if($('#on-off').is(":checked")){
+                    data = {value : '3'}
+                }
+                else{
+                   data = {value : '2'}
+                }
+            fetch('https://io.adafruit.com/api/v2/DAFS/feeds/led/data', {
+            method: 'POST', // or 'PUT'
+            headers: {
+              'Content-Type': 'application/json',
+              'X-AIO-Key' : 'aio_ybEe57IpNf9vUtBlfhHmQP4NbrJj'
+            },
+            body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+              console.log('Success:', data);
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+            })
 });
 
-})
- 
-  
-
-
-
-});
     function fetchdata(){ 
     // add rest = true and jsonp = true to /etc/mongodb.conf, 
     // then restart mongodb
@@ -163,11 +153,10 @@ $('#on-off').change(function(){
                 $("code").text("get failed: "+error).css("color","red");
             })
             .always(function() {
-                console.log("finished")
-            })
+                console.log("finished")})
   };
-
   function fetchdata1(){ 
+     
     // add rest = true and jsonp = true to /etc/mongodb.conf, 
     // then restart mongodb
          $.ajax({
@@ -194,6 +183,4 @@ $('#on-off').change(function(){
                 console.log("finished")
             })
   };
-
-
 </script>
