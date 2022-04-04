@@ -1,8 +1,10 @@
 var express = require("express");
 var router = express.Router();
+const notificationController = require('../app/controllers/notificationController')
 
-router.get("/notification", function(req, res) {
-    res.render("notification/notification");
+
+router.get("/", function(req, res) {
+    notificationController.allNotification(req, res)
 });
 
 module.exports = router;

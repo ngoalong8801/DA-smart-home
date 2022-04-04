@@ -46,11 +46,10 @@ class UserController {
     next();
     }
 
-    // management
+    // management ///////////////////
     UserManage(req, res) {
         User.find({}).lean()
             .then(function(users) {
-                console.log(users)
                 res.render('management/user_management', {users})
             })
     }
@@ -75,7 +74,7 @@ class UserController {
             })
 
     }
-    //
+    ////////////////////////////////
 }
 
 module.exports = new UserController();
