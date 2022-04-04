@@ -21,7 +21,7 @@ router.get("/:id/light", function (req, res) {
 });
 
 router.get("/:id", function (req, res) {
-	res.render("room/room");
+	res.render("room/room", {nameroom: req.params.id});
 });
 
 module.exports = router;

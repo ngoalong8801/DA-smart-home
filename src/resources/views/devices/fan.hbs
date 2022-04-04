@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
     <div class="fan">
+      
         <div class="swiper mySwiper fan__devices__wrapper ">
             <div class="swiper-wrapper fan__devices">
                 <div class="swiper-slide fan__devices__item">
@@ -132,6 +133,30 @@
 		},
 	},
 });
+
+fetch('https://io.adafruit.com/api/v2/DAFS/feeds/fan/data')
+  .then(response => response.json())
+  .then(data => fetchData(data));
+
+
+  const fetchData =(data)=>{
+    {{!-- console.log(data[0]) --}}
+   
+  }
+
+const fans =document.querySelectorAll(".fan__devices__item");
+const texts =document.querySelectorAll(".fan__devices__item span");
+
+const fan__title= document.querySelector(".fan__content__title strong")
+
+fans.forEach((fan,index)=>{
+ fan.addEventListener("click",(e)=>{
+fan__title.innerHTML= texts[index].innerHTML;
+ })
+   
+})
+
+
 
 </script>
 {{!-- <script src="./script5.js"></script> --}}
