@@ -48,7 +48,7 @@ class UserController {
 
     // management ///////////////////
     UserManage(req, res) {
-        User.find({}).lean()
+        User.find({}).sort({_id: 'desc'}).lean()
             .then(function(users) {
                 res.render('management/user_management', {users})
             })

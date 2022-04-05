@@ -9,10 +9,15 @@ const route = require("./routes/index");
 
 var passport = require("passport");
 var session = require("express-session");
-
 var SiteController = require("./app/controllers/siteController");
-
 var flash = require("connect-flash");
+
+var NotificationController = require("./app/controllers/notificationController");
+
+// check gas concentration frequently to notify 
+NotificationController.checkGasConcen()
+
+
 
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
