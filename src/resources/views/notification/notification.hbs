@@ -1,5 +1,10 @@
 <main class="container">
     <section class="col-md-7 col-lg-6 col-xl-5 mx-auto">
+        {{#unless notifications}}
+            <article class="my-3 rounded p-3" style="text-align: center">
+                <h3 class="text-muted">No data!</h3>
+            </article>
+        {{/unless}}
         {{#each notifications}}
         <article class="my-3 border rounded p-3">
             <div class="d-flex flex-row">
@@ -7,18 +12,28 @@
                     <h3 class="text-{{type}}">{{title}}</h3>
                 </div>
                 <div class="w-50 d-flex align-items-center justify-content-end">
-                    <span>
-                    date
-                    </span></div>
+                    <span class="notification-date">
+                        {{createdAt}}
+                    </span>
+                </div>
             </div>
             <p style="word-wrap: break-word;">
                 {{content}}
             </p>
-            <div class="d-flex flex-row justify-content-end">
-                <button type="button" class="btn btn-outline-danger">Dismiss</button>
+            <form method="post" action="/notification/dismiss">
+                <div class="d-flex flex-row justify-content-end">
+                    <input type="hidden" name="notificationID" value="{{_id}}">
+                <button type="submit" class="btn btn-primary">Dismiss</button>
             </div>
+            </form>
+            
         </article>
         {{/each}}
-        
+        <script>
+            date = document.getElementsByClassName("notification-date")
+            for (i=0; i<date.length; i++) {
+                date[i].innerHTML = date[i].innerText.slice(3,24)
+            }
+        </script>
     </section>
 </main>

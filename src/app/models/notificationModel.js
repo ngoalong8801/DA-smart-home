@@ -12,6 +12,8 @@ const notification = new mongoose.Schema({
         type: String
         //danger - warning - inform
     }
+},{
+    timestamps: true
 });
 
 module.exports = mongoose.model('notification', notification);

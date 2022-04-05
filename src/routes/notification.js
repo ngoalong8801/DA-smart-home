@@ -4,7 +4,10 @@ const notificationController = require('../app/controllers/notificationControlle
 
 
 router.get("/", function(req, res) {
+    // notificationController.addNotification("Khi ga ro ri", "Nong do khi ga vuot nguong, nguy hiem", "warning")
+    // notificationController.addNotification("Khi ga ro ri", "Nong do khi ga vuot nguong, nguy hiem", "danger")
     notificationController.allNotification(req, res)
 });
 
+router.post('/dismiss', notificationController.removeNotification)
 module.exports = router;

@@ -19,6 +19,14 @@ class NotificationController {
             .then()
             .catch()
     }
+
+    removeNotification(req, res) {
+        let notificationID = req.body.notificationID
+        Notification.deleteOne({_id: notificationID})
+            .then(() => {
+                res.redirect('/notification')
+            })
+    }
     
 }
 
