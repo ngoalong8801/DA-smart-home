@@ -1,20 +1,19 @@
 var express = require('express');
 var passport = require('passport');
 var initPassportLocal = require('./passport');
-const userController = require('../../app/controllers/userController')
-const SiteController = require('../../app/controllers/siteController')
-
+const APIController = require('../../app/controllers/apiController')
 var router = express.Router();
 initPassportLocal();
 
-
-// router.get('/checkLogin', passport.authenticate("local"))
-
-router.post('/login', passport.authenticate("local"), function(req, res) {
-    res.send('ok')
+router.get('/checkConnection', function (req, res) {
+    res.send(true)
 })
 
-router.get('/checkLogin', SiteController.requireLoginAPI, function (req, res) {
+router.post('/login', passport.authenticate("local"), function(req, res) {
+    res.send('logged in')
+})
+
+router.get('/checkLogin', APIController.requireLogin, function (req, res) {
     res.send({loggedIn: true})
 } )
 
@@ -25,11 +24,11 @@ router.get('/logout', function (req, res, next) {
 })
 
 
-router.get('/getAllUser', SiteController.requireLoginAPI, function (req, res) {
-    userController.getAllUsers(req, res)
+router.get('/getAllUser', APIController.requireLogin, function (req, res) {
+    APIController.getAllUsers(req, res)
 });
 
 
-router.post('/createUser', SiteController.requireLoginAPI, userController.addUser)
-router.post('/removeUser', SiteController.requireLoginAPI, userController.deleteUser)
+router.post('/createUser', APIController.requireLogin, APIController.addUser)
+router.post('/removeUser', APIController.requireLogin, APIController.deleteUser)
 module.exports = router;

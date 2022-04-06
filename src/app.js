@@ -88,6 +88,9 @@ app.use(passport.session());
 
 //middleware set variable for all request
 app.use((req, res, next) => {
+    const apiu = /^[/]api[/](.*?)$/
+    if (req.url.match(apiu)) return next();
+
     //if url is the same with login ... continue
     if (req.url === "/users/login") return next();
 
