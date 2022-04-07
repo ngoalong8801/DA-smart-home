@@ -50,6 +50,13 @@ class APIController {
                 res.send(notifications)
             })
     }
+
+    removeNotification(req, res) {
+        let notificationID = req.body.notificationID
+        Notification.deleteOne({_id: notificationID})
+            .then(() => {res.send(true)})
+            .catch(()=> res.send(false))
+    }
     /////////////////////////////////////////////
 }
 
