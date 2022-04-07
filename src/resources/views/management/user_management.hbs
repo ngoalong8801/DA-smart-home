@@ -8,76 +8,47 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Name</th>
                                 <th scope="col">Username</th>
                                 <th scope="col">Password</th>
+                                <th scope="col">Role</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <!-- Keep -->
+                            {{#each users}}
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Nguyen Duy Manh</td>
-                                <td>ugdfgjerjbnn</td>
-                                <td>dfgbdnn13355</td>
+                                <th scope="row">{{@index}}</th>
+                                <td>{{userName}}</td>
+                                <td>{{password}}</td>
+                                <td>{{role}}</td>
                                 <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal">Remove</button></td>
                             </tr>
                             
                             <!-- Modal -->
+                            
                             <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
+                                <form method="post" action="/management/removeUser">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                     <h5 class="modal-title" id="confirmModalLabel">Remove user</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                    Are you sure to delete this user?
+                                    Are you sure to delete user "{{userName}}"?
                                     </div>
                                     <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Confirm</button>
+                                    <input type="hidden" name="userID" value="{{_id}}">
+                                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Confirm</button>
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     </div>
                                 </div>
+                                </form>
                                 </div>
                             </div>
                             <!-- Keep -->
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Nguyen Duy Manh</td>
-                                <td>ugdfgjerjbnn</td>
-                                <td>dfgbdnn13355</td>
-                                <td><button type="button" class="btn btn-danger">Remove</button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Nguyen Duy Manh</td>
-                                <td>ugdfgjerjbnn</td>
-                                <td>dfgbdnn13355</td>
-                                <td><button type="button" class="btn btn-danger">Remove</button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Nguyen Duy Manh</td>
-                                <td>ugdfgjerjbnn</td>
-                                <td>dfgbdnn13355</td>
-                                <td><button type="button" class="btn btn-danger">Remove</button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Nguyen Duy Manh</td>
-                                <td>ugdfgjerjbnn</td>
-                                <td>dfgbdnn13355</td>
-                                <td><button type="button" class="btn btn-danger">Remove</button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Nguyen Duy Manh</td>
-                                <td>ugdfgjerjbnn</td>
-                                <td>dfgbdnn13355</td>
-                                <td><button type="button" class="btn btn-danger">Remove</button></td>
-                            </tr>
+                            {{/each}}
                         </tbody>
                     </table>
     
@@ -89,7 +60,7 @@
                     <!-- Modal -->
                     <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
-                            <form class="modal-content" method="post" action="#">
+                            <form class="modal-content" method="post" action="/management/addUser">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="addUserModalLabel">Add user</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -98,17 +69,21 @@
 
                                     <!-- Form field -->
                                     <div class="form-group py-2">
-                                        <label for="name">Name</label>
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter name">
-                                    </div>
-                                    <div class="form-group py-2">
                                         <label for="username">Username</label>
-                                        <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+                                        <input type="text" class="form-control" id="username" name="userName" placeholder="Username">
                                     </div>
                                     <div class="form-group py-2">
                                         <label for="password">Password</label>
                                         <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                                    </div>        
+                                    </div> 
+                                    <div class="form-group py-2">
+                                        <label for="role">Role</label>
+                                        <select name="role" id="role" class="form-control">                 
+                                            <option value="normal">Normal user</option>
+                                            <option value="admin">Admin</option>
+                                        </select>
+                                        
+                                    </div>
 
                                 </div>
                                 <div class="modal-footer">

@@ -12,7 +12,11 @@
                        <img src="/images/fan.png" alt="">
                         <img src="/images/fan (1).png" alt="">
                     </div>
-                    <span>fan 1</span>
+                   
+                      <span>fan 1</span>
+                  
+                  
+                   
                 </div>
                 <div class="swiper-slide fan__devices__item">
                     <div class="fan__devices__item__image">
@@ -59,6 +63,7 @@
         <div class="fan__content">
             <div class="fan__content__title">
                 <strong>fan 1</strong>
+                  
             </div>
             <div class="fan__content__image">
                 <img src="https://www.ushafans.com/sites/default/files/lifestyle-fan.png" alt="">
@@ -154,9 +159,12 @@ var checkbox= document.querySelector(".checkbox");
   }
 
   }
-
+  const turn =  document.querySelectorAll(".fan__devices__item__image");
+checkbox.addEventListener("change", () => {
+ turn[0].classList.toggle("active")
+})
     checkbox.addEventListener("change",()=>{
-    
+  
     if (checkbox.checked){
      
         datas= {value:"1"}

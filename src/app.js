@@ -9,10 +9,13 @@ const route = require("./routes/index");
 
 var passport = require("passport");
 var session = require("express-session");
-
 var SiteController = require("./app/controllers/siteController");
-
 var flash = require("connect-flash");
+
+var NotificationController = require("./app/controllers/notificationController");
+
+// check gas concentration frequently to notify
+NotificationController.checkGasConcen();
 
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
@@ -83,6 +86,9 @@ app.use(passport.session());
 
 //middleware set variable for all request
 app.use((req, res, next) => {
+	const apiu = /^[/]api[/](.*?)$/;
+	if (req.url.match(apiu)) return next();
+
 	//if url is the same with login ... continue
 	if (req.url === "/users/login") return next();
 
@@ -117,8 +123,7 @@ app.use(function (err, req, res, next) {
 	res.status(err.status || 500);
 	res.render("error");
 });
-
-const port = 3000;
+const port = 3001;
 app.listen(port, () => {
 	console.log(`Example app listening at http://localhost:${port}`);
 });
