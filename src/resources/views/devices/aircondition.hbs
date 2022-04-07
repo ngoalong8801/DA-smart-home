@@ -18,7 +18,7 @@
           <span class="temp-setting">Off</span>
           <label class="switch">
             <input id="on-off" type="checkbox" />
-            <span class="slider round"></span>
+            <span id="on-off-span" class="slider round"></span>
           </label>
 
           <span class="temp-setting">On</span>
@@ -29,7 +29,18 @@
           <label class="auto-label">Auto
             <img src="/images/icons8-time-40.png" /></label>
           <div class="air-auto-mode">
-            <div class="air-condition-time">
+
+          <div class="temp-air-condition">
+          <span class="temp-setting">Off</span>
+          <label class="switch">
+            <input id="auto" type="checkbox" />
+            <span  class="slider round"></span>
+          </label>
+
+          <span class="temp-setting">On</span>
+
+        </div>
+            {{!-- <div class="air-condition-time">
               <div class="time-on-label" style="align-self: flex-start;">
                 <span class="text-normal">Time On: </span>
               </div>
@@ -60,7 +71,7 @@
                 <input type="number" value="8" class="number-input" />
               </div>
 
-            </div>
+            </div> --}}
           </div>
         </div>
 
@@ -110,28 +121,33 @@
     $(document).ready(function(){
             setInterval(fetchdata,500);
             setInterval(fetchdata1,500);
+            setInterval(fetchdataAuto,500);
             $('#on-off').change(function(){
                 if($('#on-off').is(":checked")){
+                  $('#on-off-span').css("background-color", "#1fa841" )
                     data = {value : '3'}
                 }
                 else{
+                  $('#on-off-span').css("background-color", "#ccc" )
                    data = {value : '2'}
                 }
-            fetch('https://io.adafruit.com/api/v2/DAFS/feeds/led/data', {
-            method: 'POST', // or 'PUT'
-            headers: {
-              'Content-Type': 'application/json',
-              'X-AIO-Key' : 'aio_ybEe57IpNf9vUtBlfhHmQP4NbrJj'
-            },
-            body: JSON.stringify(data),
+
+            updateAPI("led", data)
             })
-            .then(response => response.json())
-            .then(data => {
-              console.log('Success:', data);
-            })
-            .catch((error) => {
-              console.error('Error:', error);
-            });
+
+
+            $('#auto').change(function(){
+                if($('#auto').is(":checked")){
+                   $('#on-off').prop("disabled", true)
+                   $('#on-off-span').css("background-color", "grey" )
+                   data = {value : '5'}
+                }
+                else{
+                   $('#on-off').prop("disabled", false)
+                   $('#on-off-span').css("background-color", "#1fa841" )
+                   data = {value : '4'}
+                }
+                updateAPI("auto", data)
             })
 });
 
@@ -148,12 +164,25 @@
                 console.log(data[0].value)
                // $("code").text(d).css("color","green");
                $('#value').text(data[0].value);
+               if(parseInt(data[0].value) > 28 && $('#auto').is(":checked") && !($('#on-off').is(":checked")) ){
+                    data = {value : '3'}
+                    $('#on-off').prop('checked', true); 
+                    updateAPI("led", data)
+               }else if(parseInt(data[0].value) < 28 && $('#auto').is(":checked") && $('#on-off').is(":checked")){
+                  data = {value : '2'}
+                  $('#on-off').prop('checked', false)  
+                  updateAPI("led", data)
+               }
+
             })
             .fail(function(request,status,error) {
                 $("code").text("get failed: "+error).css("color","red");
             })
             .always(function() {
                 console.log("finished")})
+
+
+
   };
   function fetchdata1(){ 
      
@@ -174,7 +203,7 @@
                 else{
                   $('#on-off').prop('checked', false);
                 }
-                console.log($('#on-off').is(":checked"))
+
             })
             .fail(function(request,status,error) {
                 $("code").text("get failed: "+error).css("color","red");
@@ -183,4 +212,51 @@
                 console.log("finished")
             })
   };
+
+  function fetchdataAuto(){ 
+     
+    // add rest = true and jsonp = true to /etc/mongodb.conf, 
+    // then restart mongodb
+         $.ajax({
+                url: "https://io.adafruit.com/api/v2/DAFS/feeds/auto/data",
+                type: 'get',
+                dataType: 'json',
+                jsonp: 'json', // mongodb is expecting that                                                                                     
+            })
+            .done(function(data) {
+               
+               // $("code").text(d).css("color","green");
+                if(data[0].value == 5){
+                 $('#auto').prop('checked', true);
+                }
+                else{
+                  $('#auto').prop('checked', false);
+                }
+
+            })
+            .fail(function(request,status,error) {
+                $("code").text("get failed: "+error).css("color","red");
+            })
+            .always(function() {
+                console.log("finished")
+            })
+  };
+
+  function updateAPI(apiName, data){
+     fetch(`https://io.adafruit.com/api/v2/DAFS/feeds/${apiName}/data`, {
+            method: 'POST', // or 'PUT'
+            headers: {
+              'Content-Type': 'application/json',
+              'X-AIO-Key' : 'aio_sWJQ21ENdyiy0mjSC2Au57UEE0qN'
+            },
+            body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+              console.log('Success:', data);
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+  }
 </script>
