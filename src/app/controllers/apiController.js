@@ -42,6 +42,15 @@ class APIController {
 
     }
     /////////////////////////////////////////////
+
+    // Notifications ////////////////////////////
+    getAllNotifications(req, res) {
+        Notification.find({}).sort({createdAt: 'desc'})
+            .then((notifications) => {
+                res.send(notifications)
+            })
+    }
+    /////////////////////////////////////////////
 }
 
 module.exports = new APIController();
