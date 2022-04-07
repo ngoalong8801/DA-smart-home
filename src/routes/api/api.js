@@ -26,7 +26,13 @@ router.get('/logout', function (req, res, next) {
 
 router.get('/getAllUser', APIController.requireLogin, function (req, res) {
     APIController.getAllUsers(req, res)
-});
+})
+
+router.get('/getAllNotification', APIController.requireLogin, function (req, res) {
+    APIController.getAllNotifications(req, res)
+})
+
+router.post('/removeNotification', APIController.requireLogin, APIController.removeNotification)
 
 
 router.post('/createUser', APIController.requireLogin, APIController.addUser)
