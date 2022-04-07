@@ -103,6 +103,24 @@
     transition: transform 0.5s ease, -webkit-transform 0.5s ease;
 }
 
+.fan__devices__item__image.active img:first-child {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: -webkit-transform 0.5s ease;
+    transition: -webkit-transform 0.5s ease;
+    transition: transform 0.5s ease;
+    transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+}
+
+.fan__devices__item__image.active img:last-child {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: -webkit-transform 0.5s ease;
+    transition: -webkit-transform 0.5s ease;
+    transition: transform 0.5s ease;
+    transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+}
+
 .fan__content {
     padding-top: 20px;
 }
@@ -111,6 +129,9 @@
     font-size: 30px;
     font-weight: bold;
     text-transform: capitalize;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .fan__content__image {
