@@ -134,27 +134,57 @@
 	},
 });
 
-fetch('https://io.adafruit.com/api/v2/DAFS/feeds/fan/data')
+
+
+const fetchData =()=>{ 
+    fetch('https://io.adafruit.com/api/v2/DAFS/feeds/fan/data')
   .then(response => response.json())
-  .then(data => fetchData(data));
+  .then(data => resData(data));
+}
+setInterval(fetchData,3000);
 
-
-  const fetchData =(data)=>{
-    {{!-- console.log(data[0]) --}}
-   
+var checkbox= document.querySelector(".checkbox");
+  const resData =(data)=>{
+      console.log(data[0])
+  if (data[0].value==="1"){
+      checkbox.checked = true;
+  }
+  else{
+      checkbox.checked = false;
   }
 
-const fans =document.querySelectorAll(".fan__devices__item");
-const texts =document.querySelectorAll(".fan__devices__item span");
+  }
 
-const fan__title= document.querySelector(".fan__content__title strong")
-
-fans.forEach((fan,index)=>{
- fan.addEventListener("click",(e)=>{
-fan__title.innerHTML= texts[index].innerHTML;
- })
-   
+    checkbox.addEventListener("change",()=>{
+    
+    if (checkbox.checked){
+     
+        datas= {value:"1"}
+    }
+    else{
+       
+        datas= {value:"0"}
+    }
+            postData(datas);
+           
 })
+
+const postData =(datas)=>{
+     fetch('https://io.adafruit.com/api/v2/DAFS/feeds/fan/data', {
+            method: 'POST', // or 'PUT'
+            headers: {
+              'Content-Type': 'application/json',
+              'X-AIO-Key' : 'aio_PkDW01Hbrr7r0N8NSjygTSyqdtf4'
+            },
+            body: JSON.stringify(datas),
+            })
+            .then(()=>{
+               setTimeout( fetchData,1000);
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+}
 
 
 

@@ -3,11 +3,7 @@ var express = require("express");
 var router = express.Router();
 const deviceController = require("../app/controllers/DeviceController");
 router.get("/:id/aircondition", function (req, res) {
-	var user = {};
-	if (req.user) {
-		user = JSON.parse(JSON.stringify(req.user));
-	}
-	res.render("devices/aircondition", {user: user});
+	res.render("devices/aircondition");
 });
 
 router.get("/:id/fan", deviceController.fan);
