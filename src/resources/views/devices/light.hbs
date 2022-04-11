@@ -37,13 +37,18 @@
             </div> --}}
             <div class="body">
                 <div class="img">
-                    <img class="img-src" src="/images/light.png" alt="">
+                    <div id="lightOff">
+                        <img class="img-src"  src="/images/light.png" alt="">
+                    </div>
+                    <div id="lightOn" style="display: none;">
+                        <img class="img-src"  src="/images/light1.png" alt="" >
+                    </div>
                 </div>
                 <div class="detail d-flex">
                     <!-- <button class="on" style="float: right;">ON</button> -->
-                    <div class="temp-air-condition" style="align-items: center;">
+                    <div class="temp-air-condition" style="align-items: center;" onclick="switchFunc()">
                         <span class="temp-setting">OFF</span>
-                        <label class="switch" onclick="switchFunc()">
+                        <label class="switch" >
                             <input type="checkbox">
                             <span class="slider round"></span>
                             <span class="d-none switch-value">0</span>
@@ -87,19 +92,167 @@
 
 <script>
     function switchFunc(){
-        var value = document.getElementsByClassName('switch-value')[0].innerHTML;
+        var value = document.getElementsByClassName("switch-value")[0].innerHTML;
         console.log(value);
-        var imgSrc = document.getElementsByClassName('img-src')[0];
-        console.log(imgSrc.src);
+        var lighton = document.getElementById("lightOn");
+        var lightoff = document.getElementById("lightOff");
         if(value == 0){
-            document.getElementsByClassName('switch-value')[0].innerHTML = 1;
-            imgSrc.src = "/images/light1.png";
+            document.getElementsByClassName("switch-value")[0].innerHTML = 1;
+            lightoff.style.display = 'none';
+            console.log(lightoff);
+            lighton.style.display = 'block';
         }
         else{
-            document.getElementsByClassName('switch-value')[0].innerHTML = 0;
-            imgSrc.src = "/images/light.png";
+            document.getElementsByClassName("switch-value")[0].innerHTML = 0;
+            lightoff.style.display = 'block';
+            lighton.style.display = 'none';
         }
-    }    
+        console.log(lightoff);
+        console.log(lighton);
+        
+    }  
+
+    $(document).ready(function(){
+            setInterval(fetchdata,500);
+            setInterval(fetchdata1,500);
+            setInterval(fetchdataAuto,500);
+            $('#on-off').change(function(){
+                if($('#on-off').is(":checked")){
+                  $('#on-off-span').css("background-color", "#1fa841" )
+                    data = {value : '3'}
+                }
+                else{
+                  $('#on-off-span').css("background-color", "#ccc" )
+                   data = {value : '2'}
+                }
+
+            updateAPI("led", data)
+            })
+
+
+            $('#auto').change(function(){
+                if($('#auto').is(":checked")){
+                   $('#on-off').prop("disabled", true)
+                   $('#on-off-span').css("background-color", "grey" )
+                   data = {value : '5'}
+                }
+                else{
+                   $('#on-off').prop("disabled", false)
+                   $('#on-off-span').css("background-color", "#1fa841" )
+                   data = {value : '4'}
+                }
+                updateAPI("auto", data)
+            })
+});
+
+    function fetchdata(){ 
+    // add rest = true and jsonp = true to /etc/mongodb.conf, 
+    // then restart mongodb
+         $.ajax({
+                url: "https://io.adafruit.com/api/v2/DAFS/feeds/light/data",
+                type: 'get',
+                dataType: 'json',
+                jsonp: 'json', // mongodb is expecting that                                                                                     
+            })
+            .done(function(data) {
+                console.log(data[0].value)
+               // $("code").text(d).css("color","green");
+               $('#value').text(data[0].value);
+               if(parseInt(data[0].value) > 28 && $('#auto').is(":checked") && !($('#on-off').is(":checked")) ){
+                    data = {value : '3'}
+                    $('#on-off').prop('checked', true); 
+                    updateAPI("led", data)
+               }else if(parseInt(data[0].value) < 28 && $('#auto').is(":checked") && $('#on-off').is(":checked")){
+                  data = {value : '2'}
+                  $('#on-off').prop('checked', false)  
+                  updateAPI("led", data)
+               }
+
+            })
+            .fail(function(request,status,error) {
+                $("code").text("get failed: "+error).css("color","red");
+            })
+            .always(function() {
+                console.log("finished")})
+
+
+
+  };
+  function fetchdata1(){ 
+     
+    // add rest = true and jsonp = true to /etc/mongodb.conf, 
+    // then restart mongodb
+         $.ajax({
+                url: "https://io.adafruit.com/api/v2/DAFS/feeds/led/data",
+                type: 'get',
+                dataType: 'json',
+                jsonp: 'json', // mongodb is expecting that                                                                                     
+            })
+            .done(function(data) {
+                console.log(data[0].value)
+               // $("code").text(d).css("color","green");
+                if(data[0].value == 3){
+                 $('#on-off').prop('checked', true);
+                }
+                else{
+                  $('#on-off').prop('checked', false);
+                }
+
+            })
+            .fail(function(request,status,error) {
+                $("code").text("get failed: "+error).css("color","red");
+            })
+            .always(function() {
+                console.log("finished")
+            })
+  };
+
+  function fetchdataAuto(){ 
+     
+    // add rest = true and jsonp = true to /etc/mongodb.conf, 
+    // then restart mongodb
+         $.ajax({
+                url: "https://io.adafruit.com/api/v2/DAFS/feeds/auto/data",
+                type: 'get',
+                dataType: 'json',
+                jsonp: 'json', // mongodb is expecting that                                                                                     
+            })
+            .done(function(data) {
+               
+               // $("code").text(d).css("color","green");
+                if(data[0].value == 5){
+                 $('#auto').prop('checked', true);
+                }
+                else{
+                  $('#auto').prop('checked', false);
+                }
+
+            })
+            .fail(function(request,status,error) {
+                $("code").text("get failed: "+error).css("color","red");
+            })
+            .always(function() {
+                console.log("finished")
+            })
+  };
+
+  function updateAPI(apiName, data){
+     fetch(`https://io.adafruit.com/api/v2/DAFS/feeds/${apiName}/data`, {
+            method: 'POST', // or 'PUT'
+            headers: {
+              'Content-Type': 'application/json',
+              'X-AIO-Key' : 'aio_sWJQ21ENdyiy0mjSC2Au57UEE0qN'
+            },
+            body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+              console.log('Success:', data);
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+  }  
     
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
