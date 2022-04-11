@@ -1,0 +1,279 @@
+* {
+    margin: 0;
+}
+
+.container {
+    margin-top: 2%;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    padding-bottom: 60px;
+    height: 100vh;
+}
+
+.title h1 {
+    text-align: center;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    color: #333;
+    background: #fff;
+}
+
+.fa-arrow-left {
+    font-size: 40px;
+    color: rgb(41, 23, 139);
+}
+
+.active img {
+    color: rgb(224, 42, 51) !important;
+}
+
+section h1 {
+    width: 100%;
+    margin: 0 auto;
+    font-size: 60px;
+    /* line-height: 50px; */
+    align-items: center;
+    text-align: center;
+    font-size: 40px;
+    color: green;
+}
+
+img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+
+
+/* 
+section {
+    border: 1px solid black;
+} */
+
+.item-a {
+    width: 120px;
+}
+
+@media (max-width: 460px) {
+    .item-a {
+        width: 80px;
+    }
+}
+
+ul {
+    list-style: none outside none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+li {
+    display: block;
+    float: left;
+    margin-right: 6px;
+    cursor: pointer;
+}
+
+.img {
+    width: 100%;
+    height: auto;
+    align-items: center;
+}
+
+.img img {
+    width: 20%;
+    height: auto;
+    margin: 1rem auto;
+}
+
+#mode {
+    display: flex;
+}
+
+.detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#mode {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#timeOn,
+#timeOff {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.mode-btn {
+    width: 100px;
+    height: 50px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px;
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+}
+
+
+/* .mode-item {
+    align-items: right;
+    float: right;
+} */
+
+.container {
+    margin-top: 2%;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    padding-bottom: 60px;
+    height: 100vh;
+}
+
+.img-air-condition img {
+    display: block;
+    margin: 0 auto;
+}
+
+.temp-air-condition {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 25px;
+}
+
+.temp-air-condition .temp-setting {
+    font-size: large;
+    font-weight: 400;
+}
+
+.temp-air-value {
+    font-size: xx-large;
+}
+
+.auto-setting {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    flex-direction: column;
+}
+
+.air-condition-time {
+    display: flex;
+    gap: 10px;
+    padding-right: 30px;
+    padding-top: 10px;
+}
+
+.time-on-label span {
+    padding-right: 10px;
+}
+
+.auto-setting img {
+    width: 20px;
+}
+
+.text-normal {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.auto-label {
+    font-size: large;
+}
+
+.auto-btn {
+    font-size: medium;
+    background-color: rgb(170, 196, 226);
+    border-radius: 20%;
+    box-shadow: #ccc;
+    padding: 5px 10px;
+}
+
+.text-normal {
+    font-size: 20px;
+}
+
+.number-input {
+    width: 50px;
+    text-align: center;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+
+/* Hide default HTML checkbox */
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+
+/* The slider */
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #1fa841;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #1fa841;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+
+/* Rounded sliders */
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
