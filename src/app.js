@@ -14,10 +14,8 @@ var flash = require("connect-flash");
 
 var NotificationController = require("./app/controllers/notificationController");
 
-// check gas concentration frequently to notify 
-NotificationController.checkGasConcen()
-
-
+// check gas concentration frequently to notify
+NotificationController.checkGasConcen();
 
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
@@ -88,7 +86,7 @@ app.use(passport.session());
 
 //middleware set variable for all request
 app.use((req, res, next) => {
-    const apiu = /^[/]api[/](.*?)$/
+    const apiu = /^[/]api[/](.*?)$/;
     if (req.url.match(apiu)) return next();
 
     //if url is the same with login ... continue
@@ -125,9 +123,5 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render("error");
 });
-// const port = 3000;
-// app.listen(port, () => {
-// 	console.log(`Example app listening at http://localhost:${port}`);
-// });
 
 module.exports = app;

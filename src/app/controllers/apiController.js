@@ -42,6 +42,22 @@ class APIController {
 
     }
     /////////////////////////////////////////////
+
+    // Notifications ////////////////////////////
+    getAllNotifications(req, res) {
+        Notification.find({}).sort({createdAt: 'desc'})
+            .then((notifications) => {
+                res.send(notifications)
+            })
+    }
+
+    removeNotification(req, res) {
+        let notificationID = req.body.notificationID
+        Notification.deleteOne({_id: notificationID})
+            .then(() => {res.send(true)})
+            .catch(()=> res.send(false))
+    }
+    /////////////////////////////////////////////
 }
 
 module.exports = new APIController();

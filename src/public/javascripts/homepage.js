@@ -1,6 +1,6 @@
 const fakeDataRoom = [
 	{
-		room: "living room",
+		room: "livingroom",
 		numDevices: 4,
 		img: "/images/livingroom.avif",
 	},
@@ -48,7 +48,7 @@ var htmls = fakeDataRoom.map((item, index) => {
 	return `
 
 <div class="col-sm-6">
-    <a href="room">
+    <a href=${room}>
         <div class="home__room__item ">
             <div class="home__room__item__info">
                 <h2>${room}</h2>
