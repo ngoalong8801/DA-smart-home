@@ -1,18 +1,19 @@
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
+    {{!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">     --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/cba7995b4a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="stylesheets/lightslider.css">
     <script src="javascripts/lightslider.js"></script>
+    <link rel="stylesheet" href="/stylesheets/light.css">
     
-<section>
+
     <div class="container">
         <div class="row">
-            <div class="col-md-12 d-flex">
-                <i class="fa fa-arrow-left"></i>
-                <H1>Light</H1>
+            <div class="col-md-12 d-flex title">
+                <i class="fa fa-arrow-left col-5"></i>
+                <h1 class="col-2">Light</h1>
             </div>
-            <div class="demo col-md-12">
+            {{!-- <div class="demo col-md-12">
                 <div class="navbar-collapse" id="navbar" style="align-items: center;">
                     <ul id="autoWidth" class="cs-hidden">
                         <li class="nav-item active item-a">
@@ -33,158 +34,229 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> --}}
             <div class="body">
-                <div class="detail d-flex">
-                    <h2 class="col-10">Light 1</h2>
-                    <!-- <button class="on" style="float: right;">ON</button> -->
-                    <div class="temp-air-condition" style="align-items: center;">
-                        <span class="temp-setting">Off</span>
-                        <label class="switch">
-                            <input type="checkbox">
-                            <span class="slider round"></span>
-                        </label>
-
-                        <span class="temp-setting">On</span>
+                <div class="img">
+                    <div id="lightOff">
+                        <img class="img-src"  src="/images/light.png" alt="">
+                    </div>
+                    <div id="lightOn" style="display: none;">
+                        <img class="img-src"  src="/images/light1.png" alt="" >
                     </div>
                 </div>
-                <img src="li.png" alt="">
+                <div class="detail d-flex">
+                    <!-- <button class="on" style="float: right;">ON</button> -->
+                    <div class="temp-air-condition" style="align-items: center;" onclick="switchFunc()">
+                        <span class="temp-setting">OFF</span>
+                        <label class="switch" >
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                            <span class="d-none switch-value">0</span>
+                        </label>
+                        <span class="temp-setting">ON</span>
+                    </div>
+                </div>
             </div>
             <div id="modes">
                 <div id="mode" style="margin-top: 10px;">
-                    <h2 class="col-2">Mode</h2>
-                    <div class="mode-item col-8">
+                    <div class="mode-item">
                         <button class="mode-btn">
                             Auto
-                            <!-- <i class="fa fa-lightbulb-o"></i> -->
-                        </button>
-                        <button class="mode-btn">
-                            Mode 1
-                            <!-- <i class="fa fa-sun-o"></i> -->
-                        </button>
-                        <button class="mode-btn">
-                            Mode 2
-                            <!-- <i class="fa fa-moon-o"></i> -->
+                            <i class="fa fa-lightbulb-o"></i> 
                         </button>
                     </div>
-                    <button class="col-2"><i class="fa fa-plus-circle"></i></button>
                 </div>
+
                 <div id="timeMode">
                     <div id="timeOn" class="d-flex" style="margin-top: 10px;">
-                        <h3 class="col-4">Time On</h3>
-                        <div class="time-item">
-                            <input type="number" class="time-input col-2" value="" placeholder="00">
+                        <h3 class="col-2">Time On</h3>
+                        <div class="time-item col-2">
+                            <input type="number" class="time-input col-5" value="" placeholder="00">
                             <span class="time-span">h</span>
-                            <input type="number" class="time-input col-2" value="" placeholder="00">
+                            <input type="number" class="time-input col-5" value="" placeholder="00">
                         </div>
                     </div>
                     <div id="timeOff" class="d-flex" style="margin-top: 10px;">
-                        <h3 class="col-4">Time Off</h3>
-                        <div class="time-item">
-                            <input type="number" class="time-input col-2" value="" placeholder="00">
+                        <h3 class="col-2">Time Off</h3>
+                        <div class="time-item col-2 ">
+                            <input type="number" class="time-input col-5" value="" placeholder="00">
                             <span class="time-span">h</span>
-                            <input type="number" class="time-input col-2" value="" placeholder="00">
+                            <input type="number" class="time-input col-5" value="" placeholder="00">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
 
 
-
-
-<style>
-    * {
-    margin: 0;
-}
-
-section {
-    width: 90%;
-    margin: 0 auto;
-    font-size: 16px;
-}
-
-body {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 1.6rem;
-    line-height: 1.5;
-    color: #333;
-    background: #fff;
-}
-
-section {
-    padding: 2rem 0;
-}
-
-.fa-arrow-left {
-    font-size: 40px;
-    color: rgb(41, 23, 139);
-}
-
-.active img {
-    color: rgb(224, 42, 51) !important;
-}
-
-section h1 {
-    width: 100%;
-    margin: 0 auto;
-    font-size: 60px;
-    /* line-height: 50px; */
-    align-items: center;
-    text-align: center;
-    font-size: 40px;
-    color: green;
-}
-
-img {
-    display: block;
-    height: auto;
-    max-width: 100%;
-}
-
-
-/* 
-section {
-    border: 1px solid black;
-} */
-
-.item-a {
-    width: 120px;
-}
-
-@media (max-width: 460px) {
-    .item-a {
-        width: 80px;
-    }
-}
-
-ul {
-    list-style: none outside none;
-    padding-left: 0;
-    margin-bottom: 0;
-}
-
-li {
-    display: block;
-    float: left;
-    margin-right: 6px;
-    cursor: pointer;
-}
-
-#mode {
-    display: flex;
-}
-
-
-/* .mode-item {
-    align-items: right;
-    float: right;
-} */
-</style>
 <script>
-    $(document).ready(function() {
+    function switchFunc(){
+        var value = document.getElementsByClassName("switch-value")[0].innerHTML;
+        console.log(value);
+        var lighton = document.getElementById("lightOn");
+        var lightoff = document.getElementById("lightOff");
+        if(value == 0){
+            document.getElementsByClassName("switch-value")[0].innerHTML = 1;
+            lightoff.style.display = 'none';
+            console.log(lightoff);
+            lighton.style.display = 'block';
+        }
+        else{
+            document.getElementsByClassName("switch-value")[0].innerHTML = 0;
+            lightoff.style.display = 'block';
+            lighton.style.display = 'none';
+        }
+        console.log(lightoff);
+        console.log(lighton);
+        
+    }  
+
+    $(document).ready(function(){
+            setInterval(fetchdata,500);
+            setInterval(fetchdata1,500);
+            setInterval(fetchdataAuto,500);
+            $('#on-off').change(function(){
+                if($('#on-off').is(":checked")){
+                  $('#on-off-span').css("background-color", "#1fa841" )
+                    data = {value : '3'}
+                }
+                else{
+                  $('#on-off-span').css("background-color", "#ccc" )
+                   data = {value : '2'}
+                }
+
+            updateAPI("led", data)
+            })
+
+
+            $('#auto').change(function(){
+                if($('#auto').is(":checked")){
+                   $('#on-off').prop("disabled", true)
+                   $('#on-off-span').css("background-color", "grey" )
+                   data = {value : '5'}
+                }
+                else{
+                   $('#on-off').prop("disabled", false)
+                   $('#on-off-span').css("background-color", "#1fa841" )
+                   data = {value : '4'}
+                }
+                updateAPI("auto", data)
+            })
+});
+
+    function fetchdata(){ 
+    // add rest = true and jsonp = true to /etc/mongodb.conf, 
+    // then restart mongodb
+         $.ajax({
+                url: "https://io.adafruit.com/api/v2/DAFS/feeds/light/data",
+                type: 'get',
+                dataType: 'json',
+                jsonp: 'json', // mongodb is expecting that                                                                                     
+            })
+            .done(function(data) {
+                console.log(data[0].value)
+               // $("code").text(d).css("color","green");
+               $('#value').text(data[0].value);
+               if(parseInt(data[0].value) > 28 && $('#auto').is(":checked") && !($('#on-off').is(":checked")) ){
+                    data = {value : '3'}
+                    $('#on-off').prop('checked', true); 
+                    updateAPI("led", data)
+               }else if(parseInt(data[0].value) < 28 && $('#auto').is(":checked") && $('#on-off').is(":checked")){
+                  data = {value : '2'}
+                  $('#on-off').prop('checked', false)  
+                  updateAPI("led", data)
+               }
+
+            })
+            .fail(function(request,status,error) {
+                $("code").text("get failed: "+error).css("color","red");
+            })
+            .always(function() {
+                console.log("finished")})
+
+
+
+  };
+  function fetchdata1(){ 
+     
+    // add rest = true and jsonp = true to /etc/mongodb.conf, 
+    // then restart mongodb
+         $.ajax({
+                url: "https://io.adafruit.com/api/v2/DAFS/feeds/led/data",
+                type: 'get',
+                dataType: 'json',
+                jsonp: 'json', // mongodb is expecting that                                                                                     
+            })
+            .done(function(data) {
+                console.log(data[0].value)
+               // $("code").text(d).css("color","green");
+                if(data[0].value == 3){
+                 $('#on-off').prop('checked', true);
+                }
+                else{
+                  $('#on-off').prop('checked', false);
+                }
+
+            })
+            .fail(function(request,status,error) {
+                $("code").text("get failed: "+error).css("color","red");
+            })
+            .always(function() {
+                console.log("finished")
+            })
+  };
+
+  function fetchdataAuto(){ 
+     
+    // add rest = true and jsonp = true to /etc/mongodb.conf, 
+    // then restart mongodb
+         $.ajax({
+                url: "https://io.adafruit.com/api/v2/DAFS/feeds/auto/data",
+                type: 'get',
+                dataType: 'json',
+                jsonp: 'json', // mongodb is expecting that                                                                                     
+            })
+            .done(function(data) {
+               
+               // $("code").text(d).css("color","green");
+                if(data[0].value == 5){
+                 $('#auto').prop('checked', true);
+                }
+                else{
+                  $('#auto').prop('checked', false);
+                }
+
+            })
+            .fail(function(request,status,error) {
+                $("code").text("get failed: "+error).css("color","red");
+            })
+            .always(function() {
+                console.log("finished")
+            })
+  };
+
+  function updateAPI(apiName, data){
+     fetch(`https://io.adafruit.com/api/v2/DAFS/feeds/${apiName}/data`, {
+            method: 'POST', // or 'PUT'
+            headers: {
+              'Content-Type': 'application/json',
+              'X-AIO-Key' : 'aio_sWJQ21ENdyiy0mjSC2Au57UEE0qN'
+            },
+            body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+              console.log('Success:', data);
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+  }  
+    
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+{{!-- $(document).ready(function() {
         $('#autoWidth').lightSlider({
             autoWidth: true,
             loop: true,
@@ -192,6 +264,4 @@ li {
                 $('#autoWidth').removeClass('cs-hidden');
             }
         });
-    });
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    }); --}}
