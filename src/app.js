@@ -21,7 +21,7 @@ NotificationController.checkGasConcen();
 // var usersRouter = require('./routes/users');
 
 var app = express();
-
+var handlerbar = require("./app/helpers/handlebarhelps");
 const db = require("./config/db");
 
 db.connect();
