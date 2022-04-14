@@ -46,12 +46,11 @@
                 </div>
                 <div class="detail d-flex">
                     <!-- <button class="on" style="float: right;">ON</button> -->
-                    <div class="temp-air-condition" style="align-items: center;" onclick="switchFunc()">
+                    <div class="temp-air-condition" style="align-items: center;" >
                         <span class="temp-setting">OFF</span>
                         <label class="switch" >
-                            <input type="checkbox">
-                            <span class="slider round"></span>
-                            <span class="d-none switch-value">0</span>
+                            <input id="on-off" type="checkbox">
+                            <span id="on-off-span" class="slider round"></span>
                         </label>
                         <span class="temp-setting">ON</span>
                     </div>
@@ -59,26 +58,34 @@
             </div>
             <div id="modes">
                 <div id="mode" style="margin-top: 10px;">
-                    <div class="mode-item">
-                        <button class="mode-btn">
+                    <div class="auto-setting">
+                        <label class="auto-label">
                             Auto
-                            <i class="fa fa-lightbulb-o"></i> 
-                        </button>
+                        </label>
+                        <div class="air-auto-mode">
+
+                        <div class="temp-air-condition">
+                        <span class="temp-setting">Off</span>
+                        <label class="switch">
+                            <input id="auto" type="checkbox" />
+                            <span  class="slider round"></span>
+                        </label>
+                        <span class="temp-setting">On</span>
                     </div>
                 </div>
 
                 <div id="timeMode">
                     <div id="timeOn" class="d-flex" style="margin-top: 10px;">
-                        <h3 class="col-2">Time On</h3>
-                        <div class="time-item col-2">
+                        <h3 class="col-3">Time On</h3>
+                        <div class="time-item col-3">
                             <input type="number" class="time-input col-5" value="" placeholder="00">
                             <span class="time-span">h</span>
                             <input type="number" class="time-input col-5" value="" placeholder="00">
                         </div>
                     </div>
                     <div id="timeOff" class="d-flex" style="margin-top: 10px;">
-                        <h3 class="col-2">Time Off</h3>
-                        <div class="time-item col-2 ">
+                        <h3 class="col-3">Time Off</h3>
+                        <div class="time-item col-3 ">
                             <input type="number" class="time-input col-5" value="" placeholder="00">
                             <span class="time-span">h</span>
                             <input type="number" class="time-input col-5" value="" placeholder="00">
@@ -91,24 +98,26 @@
 
 
 <script>
-    function switchFunc(){
-        var value = document.getElementsByClassName("switch-value")[0].innerHTML;
+    function switchFuncc(){
+        const value = document.getElementsByClassName("switch-valuee")[0].value;
         console.log(value);
         var lighton = document.getElementById("lightOn");
         var lightoff = document.getElementById("lightOff");
         if(value == 0){
-            document.getElementsByClassName("switch-value")[0].innerHTML = 1;
+            document.getElementsByClassName("switch-valuee")[0].value = 1;
             lightoff.style.display = 'none';
-            console.log(lightoff);
             lighton.style.display = 'block';
+            console.log(lightoff);
+            console.log(lighton);
         }
-        else{
-            document.getElementsByClassName("switch-value")[0].innerHTML = 0;
+        else if(value == 1){
+            console.log("value");
+            console.log(value);
+            document.getElementsByClassName("switch-valuee")[0].value = 0;
             lightoff.style.display = 'block';
             lighton.style.display = 'none';
         }
-        console.log(lightoff);
-        console.log(lighton);
+        
         
     }  
 
@@ -118,12 +127,16 @@
             setInterval(fetchdataAuto,500);
             $('#on-off').change(function(){
                 if($('#on-off').is(":checked")){
-                  $('#on-off-span').css("background-color", "#1fa841" )
+                    $('#on-off-span').css("background-color", "#1fa841" )
+                    $('#lightOn').css("display", "block");
+                    $('#lightOff').css("display", "none");
                     data = {value : '3'}
                 }
                 else{
-                  $('#on-off-span').css("background-color", "#ccc" )
-                   data = {value : '2'}
+                    $('#on-off-span').css("background-color", "#ccc" )
+                    $('#lightOn').css("display", "none");
+                    $('#lightOff').css("display", "block");
+                    data = {value : '2'}
                 }
 
             updateAPI("led", data)
@@ -178,7 +191,7 @@
 
 
   };
-  function fetchdata1(){ 
+    function fetchdata1(){ 
      
     // add rest = true and jsonp = true to /etc/mongodb.conf, 
     // then restart mongodb
@@ -207,7 +220,7 @@
             })
   };
 
-  function fetchdataAuto(){ 
+    function fetchdataAuto(){ 
      
     // add rest = true and jsonp = true to /etc/mongodb.conf, 
     // then restart mongodb
@@ -236,7 +249,7 @@
             })
   };
 
-  function updateAPI(apiName, data){
+    function updateAPI(apiName, data){
      fetch(`https://io.adafruit.com/api/v2/DAFS/feeds/${apiName}/data`, {
             method: 'POST', // or 'PUT'
             headers: {
