@@ -37,9 +37,11 @@
             </div>
           </li>
           <li class="list-group-item">Setting</li>
-          <li class="list-group-item">
-            <a href="/management">User Management</a>
-          </li>
+          {{#if_eq user.role "admin"}}
+            <li class="list-group-item">
+              <a href="/management">User Management</a>
+            </li>
+          {{/if_eq}}
           <li class="list-group-item"> <a href="/users/logout">Log out</a></li>
 
         </ul>
