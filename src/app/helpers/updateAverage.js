@@ -18,7 +18,6 @@ function timeoutUpdate() {
 }
 
 function updateAve() {
-    console.log("here");
     ReportController.addAverage(
         getDate(new Date()) + "T00:00:00Z",
         getDate(new Date()) + "T23:59:59Z"

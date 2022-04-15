@@ -23,6 +23,16 @@ class reportController {
             });
     }
 
+    async getReportWeek() {
+        var listReport;
+        await Report.find({})
+            .limit(7)
+            .then((report) => {
+                listReport = report;
+            });
+        return listReport;
+    }
+
     async getAverage(name, startDay, endDay) {
         var result;
         await fetch(
