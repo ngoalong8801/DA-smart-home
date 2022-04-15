@@ -13,7 +13,7 @@ var SiteController = require("./app/controllers/siteController");
 var flash = require("connect-flash");
 
 var NotificationController = require("./app/controllers/notificationController");
-
+var report = require("./app/helpers/updateAverage");
 // check gas concentration frequently to notify
 NotificationController.checkGasConcen();
 
@@ -25,16 +25,10 @@ var handlerbar = require("./app/helpers/handlebarhelps");
 const db = require("./config/db");
 
 db.connect();
+report.updateAveAuto();
 // view engine setup
 app.set("views", path.join(__dirname, "resources/views"));
 
-// const hbs = exphbs.create({
-//     extname      :'hbs',
-//     layoutsDir: __dirname + '/resources/views/layouts/',
-//     defaultLayout: 'main',
-//     partialsDir  : __dirname + '/resources/views/partials'
-
-// });
 console.log(__dirname + "/resources/views/layouts");
 app.set("view engine", "hbs");
 // app.engine('handlebars', hbs.engine);
@@ -68,18 +62,6 @@ app.use(
         saveUninitialized: false,
     })
 );
-// app.use(
-//     express.session({
-//         store: new RedisStore({
-//             host: "127.0.0.1", //where redis store is
-//             port: 6379, //default redis port
-//             prefix: "sess", //prefix for sessions name is store
-//             pass: "passwordtoredis", //password to redis db
-//         }),
-//         secret: "cookiesecret", //cookie secret
-//         key: "express.sid",
-//     })
-// );
 
 app.use(passport.initialize());
 app.use(passport.session());
