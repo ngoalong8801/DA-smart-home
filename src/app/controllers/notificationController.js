@@ -31,6 +31,7 @@ class NotificationController {
 
     checkGasConcen() {
         //////////// check gas concentration
+        let notied = false;
         setInterval(() => {
             fetch('https://io.adafruit.com/api/v2/DAFS/feeds/gas/data', {
                 method: 'GET', // or 'PUT'
@@ -38,7 +39,9 @@ class NotificationController {
                 .then(response => response.json())
                 .then(data => {
                     // console.log('Success:', data[0]);
-                    if (data[0].value > 600) {
+                    if (data[0].value > 600 && !notied) {
+                        notied = true;
+                        console.log("notificated");
                         this.addNotification("Khi gas ro ri", "Nong do khi ga vuot muc cho phep, vui long tru an an toan", "danger")
                     }
                 })
