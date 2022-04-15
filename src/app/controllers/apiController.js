@@ -11,6 +11,16 @@ class APIController {
     }
     
     //user management///////////////////////////
+    getRole(req, res) {
+        User.find({userName: req.body.email})
+            .then((doc) => {
+                console.log(doc)
+                res.send({
+                    loggedIn: true,
+                    role: doc[0].role
+                })
+            })
+    }
     getAllUsers(req, res) {
         User.find({})
             .then(function(doc) {
