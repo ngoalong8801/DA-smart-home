@@ -42,7 +42,7 @@ class NotificationController {
                     if (data[0].value > 600 && !notied) {
                         notied = true;
                         console.log("notificated");
-                        this.addNotification("Khi gas ro ri", "Nong do khi ga vuot muc cho phep, vui long tru an an toan", "danger")
+                        this.addNotification("Khí gas rò rỉ!", "Nồng độ khí gas đo được vượt ngưỡng an toàn, vui lòng kiểm tra", "danger")
                     }
                 })
                 .catch((error) => {
