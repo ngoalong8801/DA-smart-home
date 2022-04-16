@@ -33,6 +33,10 @@ router.get('/getAllNotification', APIController.requireLogin, function (req, res
     APIController.getAllNotifications(req, res)
 })
 
+router.get('/getWeekReport',  APIController.requireLogin, function (req, res) {
+    APIController.getReportWeek(req, res)
+})
+
 router.post('/removeNotification', APIController.requireLogin, APIController.removeNotification)
 
 

@@ -1,5 +1,6 @@
 const User = require('../models/userModel');
 const Notification = require('../models/notificationModel')
+const Report = require("../models/reportModel");
 
 class APIController {
     requireLogin(req, res, next) {
@@ -68,6 +69,17 @@ class APIController {
             .catch(()=> res.send(false))
     }
     /////////////////////////////////////////////
+
+    async getReportWeek(req, res) {
+        var listReport;
+        await Report.find({})
+            .limit(7)
+            .then((report) => {
+                listReport = report;
+            });
+        return res.send(listReport);
+    }
+
 }
 
 module.exports = new APIController();
