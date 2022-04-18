@@ -121,7 +121,7 @@
                     data = {value : '2'}
                 }
 
-            updateAPI("light", data)
+            updateAPI("led", data)
             })
 
 
@@ -144,7 +144,7 @@
     // add rest = true and jsonp = true to /etc/mongodb.conf, 
     // then restart mongodb
          $.ajax({
-                url: "https://io.adafruit.com/api/v2/DAFS/feeds/light/data",
+                url: "https://io.adafruit.com/api/v2/DAFS/feeds/led/data",
                 type: 'get',
                 dataType: 'json',
                 jsonp: 'json', // mongodb is expecting that                                                                                     
@@ -158,13 +158,13 @@
                     $('#on-off').prop('checked', true); 
                     $('#lightOn').css("display", "block");
                     $('#lightOff').css("display", "none");
-                    updateAPI("light", data)
+                    updateAPI("led", data)
                }else if(parseInt(data[0].value) < 28 && $('#auto').is(":checked") && $('#on-off').is(":checked")){
                     data = {value : '2'}
                     $('#on-off').prop('checked', false)
                     $('#lightOn').css("display", "none");
                     $('#lightOff').css("display", "block");  
-                    updateAPI("light", data)
+                    updateAPI("led", data)
                }
 
             })
@@ -182,7 +182,7 @@
     // add rest = true and jsonp = true to /etc/mongodb.conf, 
     // then restart mongodb
          $.ajax({
-                url: "https://io.adafruit.com/api/v2/DAFS/feeds/light/data",
+                url: "https://io.adafruit.com/api/v2/DAFS/feeds/led/data",
                 type: 'get',
                 dataType: 'json',
                 jsonp: 'json', // mongodb is expecting that                                                                                     
