@@ -113,7 +113,6 @@
     }  
 
     $(document).ready(function(){
-            setInterval(fetchdata,500);
             setInterval(fetchdata1,500);
             setInterval(fetchdataAuto,500);
             $('#on-off').change(function(){
@@ -149,43 +148,6 @@
             })
 });
 
-    function fetchdata(){ 
-    // add rest = true and jsonp = true to /etc/mongodb.conf, 
-    // then restart mongodb
-         $.ajax({
-                url: "https://io.adafruit.com/api/v2/DAFS/feeds/led/data",
-                type: 'get',
-                dataType: 'json',
-                jsonp: 'json', // mongodb is expecting that                                                                                     
-            })
-            .done(function(data) {
-                console.log(data[0].value)
-               // $("code").text(d).css("color","green");
-               $('#value').text(data[0].value);
-               if(parseInt(data[0].value) > 28 && $('#auto').is(":checked") && !($('#on-off').is(":checked")) ){
-                    data = {value : '3'}
-                    $('#on-off').prop('checked', true); 
-                    $('#lightOn').css("display", "block");
-                    $('#lightOff').css("display", "none");
-                    updateAPI("led", data)
-               }else if(parseInt(data[0].value) < 28 && $('#auto').is(":checked") && $('#on-off').is(":checked")){
-                    data = {value : '2'}
-                    $('#on-off').prop('checked', false)
-                    $('#lightOn').css("display", "none");
-                    $('#lightOff').css("display", "block");  
-                    updateAPI("led", data)
-               }
-
-            })
-            .fail(function(request,status,error) {
-                $("code").text("get failed: "+error).css("color","red");
-            })
-            .always(function() {
-                console.log("finished")})
-
-
-
-  };
     function fetchdata1(){ 
      
     // add rest = true and jsonp = true to /etc/mongodb.conf, 

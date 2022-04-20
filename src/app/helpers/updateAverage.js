@@ -8,7 +8,11 @@ let seconds = curDate.getSeconds();
 updateAveAuto = () => {
     setTimeout(
         timeoutUpdate,
-        getMilisicon(23, 59, 59) - getMilisicon(hours, minutes, seconds)
+        getMilisicon(
+            parseInt(process.env.HOUR),
+            parseInt(process.env.MINUTE),
+            parseInt(process.env.SECOND)
+        ) - getMilisicon(hours + 7, minutes, seconds)
     );
 };
 

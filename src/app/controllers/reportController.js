@@ -34,7 +34,7 @@ class reportController {
     }
 
     async getAverage(name, startDay, endDay) {
-        var result;
+        var result = 25;
         await fetch(
                 `https://io.adafruit.com/api/v2/DAFS/feeds/${name}/data?start_time=${startDay}&end_time=${endDay}`, {
                     method: "GET", // or 'PUT'
@@ -47,6 +47,7 @@ class reportController {
                     sum += parseInt(data[i].value);
                 }
                 result = sum / Object.keys(data).length;
+                console.log(isNaN(1));
             })
             .catch((error) => {
                 console.error("Error:", error);
@@ -57,6 +58,10 @@ class reportController {
     async addAverage(startDay, endDay) {
         var temAvg = await this.getAverage("temp", startDay, endDay);
         var humiAvg = await this.getAverage("humi", startDay, endDay);
+        if (isNaN(temAvg) || isNaN(humiAvg)) {
+            temAvg = 25;
+            humiAvg = 25;
+        }
         this.addReport(temAvg, humiAvg);
     }
 }

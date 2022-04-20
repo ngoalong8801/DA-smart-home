@@ -86,6 +86,8 @@ app.use((req, res, next) => {
         user = JSON.parse(JSON.stringify(req.user));
         res.locals.user = user;
     }
+    res.locals.AIO_KEY = process.env.AIO_KEY;
+    console.log(process.env.AIO_KEY);
     next();
 });
 
