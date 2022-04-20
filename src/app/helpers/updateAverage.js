@@ -13,7 +13,12 @@ updateAveAuto = () => {
             parseInt(process.env.HOUR),
             parseInt(process.env.MINUTE),
             parseInt(process.env.SECOND)
-        ) - getMilisicon(hours + parseInt(process.env.UTC_HOUR), minutes, seconds)
+        ) -
+        getMilisicon(
+            (hours + parseInt(process.env.UTC_HOUR)) % 24,
+            minutes,
+            seconds
+        )
     );
     setTimeout(
         timeoutUpdate,
@@ -21,7 +26,12 @@ updateAveAuto = () => {
             parseInt(process.env.HOUR),
             parseInt(process.env.MINUTE),
             parseInt(process.env.SECOND)
-        ) - getMilisicon(hours + parseInt(process.env.UTC_HOUR), minutes, seconds)
+        ) -
+        getMilisicon(
+            (hours + parseInt(process.env.UTC_HOUR)) % 24,
+            minutes,
+            seconds
+        )
     );
 };
 
