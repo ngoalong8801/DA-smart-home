@@ -193,10 +193,10 @@
                 $("code").text("get failed: "+error).css("color","red");
             })
             .always(function() {
-                console.log("finished")
+                
             })
   };
-
+   console.log($('#aio_key').val())
   function updateAPI(apiName, data){
      fetch(`https://io.adafruit.com/api/v2/DAFS/feeds/${apiName}/data`, {
             method: 'POST', // or 'PUT'
