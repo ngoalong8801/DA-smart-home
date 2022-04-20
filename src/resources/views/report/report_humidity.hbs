@@ -1,6 +1,11 @@
    <link rel="stylesheet" href="/stylesheets/report.css">
  
 <div class="report_container">
+      {{#each humi}}
+    <div class="title">
+      {{this.humidity}}
+    </div>
+    {{/each}}
      <div id="chartContainer" >
 
     </div>
@@ -10,6 +15,9 @@
 </div>
 
     <script>
+
+
+
         const data = [15, 17, 27, 15, 17, 22, 16];
 
         window.onload = function() {
