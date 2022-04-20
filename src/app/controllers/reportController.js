@@ -64,6 +64,10 @@ class reportController {
         }
         this.addReport(temAvg, humiAvg);
     }
+
+    addTestReport(temAvg, humiAvg) {
+        this.addReport(temAvg, humiAvg);
+    }
 }
 
 module.exports = new reportController();
