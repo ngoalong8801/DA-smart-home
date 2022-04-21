@@ -133,8 +133,23 @@
 
 const aio_key = document.querySelector("#aio_key").value;
 
-console.log(aio_key)
+fetch("https://io.adafruit.com/api/v2/DAFS/feeds/temp/data")
+.then(res=>res.json())
+.then(data=>{
+   updateTemp(data);
+})
 
+
+const updateTemp = (data)=>{
+let temp = data[0].value;
+updateState(temp);
+    document.querySelector(".fan__content p").innerHTML =`${temp}%`;
+}
+const updateState =(temp)=>{
+if(Number(temp)>28){
+      checkboxs[1].click();
+}
+}
 const fetchData =()=>{ 
     fetch('https://io.adafruit.com/api/v2/DAFS/feeds/fan/data')
   .then(response => response.json())
@@ -197,14 +212,12 @@ const postData =(datas)=>{
 
 
 
-
-
-
 const fetchData1 =()=>{ 
     fetch('https://io.adafruit.com/api/v2/DAFS/feeds/auto')
   .then(response => response.json())
   .then(data => resData1(data));
 }
+
 setInterval(fetchData1,3000);
 
 var checkboxs= document.querySelectorAll(".checkbox");

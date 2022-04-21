@@ -86,6 +86,7 @@ app.use((req, res, next) => {
 		user = JSON.parse(JSON.stringify(req.user));
 		res.locals.user = user;
 	}
+	res.locals.AIO_KEY = process.env.AIO_KEY;
 	next();
 });
 
@@ -106,8 +107,5 @@ app.use(function (err, req, res, next) {
 	res.status(err.status || 500);
 	res.render("error");
 });
-const port = 3000;
-app.listen(port, () => {
-	console.log(`Example app listening at http://localhost:${port}`);
-});
+
 module.exports = app;
