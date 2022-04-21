@@ -1,18 +1,37 @@
 const ReportController = require("../controllers/reportController");
 const userController = require("../controllers/userController");
-
+require("dotenv").config();
 let curDate = new Date();
 let hours = curDate.getHours();
 let minutes = curDate.getMinutes();
 let seconds = curDate.getSeconds();
 updateAveAuto = () => {
+	console.log(process.env.HOUR, process.env.MINUTE, process.env.SECOND);
+	console.log(hours, minutes, seconds);
+	console.log(
+		getMilisicon(
+			parseInt(process.env.HOUR),
+			parseInt(process.env.MINUTE),
+			parseInt(process.env.SECOND)
+		) -
+			getMilisicon(
+				(hours + parseInt(process.env.UTC_HOUR)) % 24,
+				minutes,
+				seconds
+			)
+	);
 	setTimeout(
 		timeoutUpdate,
 		getMilisicon(
 			parseInt(process.env.HOUR),
 			parseInt(process.env.MINUTE),
 			parseInt(process.env.SECOND)
-		) - getMilisicon(hours + 7, minutes, seconds)
+		) -
+			getMilisicon(
+				(hours + parseInt(process.env.UTC_HOUR)) % 24,
+				minutes,
+				seconds
+			)
 	);
 };
 
