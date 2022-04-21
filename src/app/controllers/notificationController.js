@@ -29,17 +29,25 @@ class NotificationController {
             })
     }
 
-    checkGasConcen() {
+    checkGasConcen(notied) {
         //////////// check gas concentration
         setInterval(() => {
+            // console.log(notied)
             fetch('https://io.adafruit.com/api/v2/DAFS/feeds/gas/data', {
                 method: 'GET', // or 'PUT'
             })
                 .then(response => response.json())
                 .then(data => {
                     // console.log('Success:', data[0]);
-                    if (data[0].value > 600) {
-                        this.addNotification("Khi gas ro ri", "Nong do khi ga vuot muc cho phep, vui long tru an an toan", "danger")
+                    if (data[0].value > 600 ) {
+                        if (!notied.val) {
+                            notied.val = true;
+                            // console.log("notificated");
+                            this.addNotification("Khí gas rò rỉ!", "Nồng độ khí gas đo được vượt ngưỡng an toàn, vui lòng kiểm tra", "danger")
+                        }
+                    } else {
+                        if (notied.val) 
+                            notied.val = false;
                     }
                 })
                 .catch((error) => {

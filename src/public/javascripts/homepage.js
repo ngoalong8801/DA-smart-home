@@ -156,18 +156,10 @@ function initClock() {
 	}, 1000);
 }
 
-var user = document.querySelectorAll(".fa-user");
-const listGroup = document.querySelector(".list-group");
-user[0].addEventListener("click", () => {
-	listGroup.classList.toggle("active");
-});
+var temp = JSON.parse(localStorage.getItem("tempAvarage"));
 
-document.body.addEventListener("click", (e) => {
-	if (!e.target.classList.contains("fa-user")) {
-		if (listGroup.classList.contains("active")) {
-			listGroup.classList.remove("active");
-		} else {
-			console.log("2");
-		}
-	}
-});
+document.querySelector(".temp").innerHTML = `${temp}%`;
+
+var humi = JSON.parse(localStorage.getItem("humiAvarage"));
+
+document.querySelector(".humi").innerHTML = `${humi}%`;

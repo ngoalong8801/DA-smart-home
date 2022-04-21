@@ -38,40 +38,10 @@
           </label>
 
           <span class="temp-setting">On</span>
-
+         
         </div>
-            {{!-- <div class="air-condition-time">
-              <div class="time-on-label" style="align-self: flex-start;">
-                <span class="text-normal">Time On: </span>
-              </div>
-
-              <div>
-                <input type="number" value="8" class="number-input" />
-                <span class="text-normal">
-                  h</span>
-              </div>
-              <div>
-                <input type="number" value="8" class="number-input" />
-              </div>
-
-            </div>
-
-            <div class="air-condition-time">
-              <div class="time-on-label" style="align-self: flex-start;">
-                <span class="text-normal">Time Off: </span>
-              </div>
-
-              <div>
-                <input type="number" value="8" class="number-input" /><span
-                  class="text-normal"
-                >
-                  h</span>
-              </div>
-              <div>
-                <input type="number" value="8" class="number-input" />
-              </div>
-
-            </div> --}}
+          
+             <input id="aio_key"  type="hidden" value={{AIO_KEY}}>
           </div>
         </div>
 
@@ -85,8 +55,8 @@
 <script>    
     $(document).ready(function(){
             setInterval(fetchdata,500);
-            fetchdataFunc("led", 3, "on-off")
-            fetchdataFunc("auto", 5, "auto")
+            setInterval(fetchdataFunc,2000,"led", 3, "on-off");
+            setInterval(fetchdataFunc,2000, "auto", 5, "auto");
 
             if($('#auto').is(":checked")){
               console.log("here")
@@ -116,7 +86,12 @@
                 }
                 else{
                    $('#on-off').prop("disabled", false)
-                   $('#on-off-span').css("background-color", "#1fa841" )
+                   if($('#on-off').is(":checked")){
+                      $('#on-off-span').css("background-color", "#1fa841" )
+                   }else{
+                     $('#on-off-span').css("background-color", "#ccc" )
+                   }
+                   
                    data = {value : '4'}
                 }
                 updateAPI("auto", data)
@@ -187,16 +162,16 @@
                 $("code").text("get failed: "+error).css("color","red");
             })
             .always(function() {
-                console.log("finished")
+                
             })
   };
-
+   console.log($('#aio_key').val())
   function updateAPI(apiName, data){
      fetch(`https://io.adafruit.com/api/v2/DAFS/feeds/${apiName}/data`, {
             method: 'POST', // or 'PUT'
             headers: {
               'Content-Type': 'application/json',
-              'X-AIO-Key' : 'aio_okUa46BtMHd0wnbIbWlLdKDKMC50'
+              'X-AIO-Key' : $('#aio_key').val()
             },
             body: JSON.stringify(data),
             })

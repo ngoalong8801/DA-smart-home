@@ -1,5 +1,6 @@
 const User = require('../models/userModel');
 const Notification = require('../models/notificationModel')
+const Report = require("../models/reportModel");
 
 class APIController {
     requireLogin(req, res, next) {
@@ -11,6 +12,16 @@ class APIController {
     }
     
     //user management///////////////////////////
+    getRole(req, res) {
+        User.find({userName: req.body.email})
+            .then((doc) => {
+                console.log(doc)
+                res.send({
+                    loggedIn: true,
+                    role: doc[0].role
+                })
+            })
+    }
     getAllUsers(req, res) {
         User.find({})
             .then(function(doc) {
@@ -58,6 +69,17 @@ class APIController {
             .catch(()=> res.send(false))
     }
     /////////////////////////////////////////////
+
+    async getReportWeek(req, res) {
+        var listReport;
+        await Report.find({})
+            .limit(7)
+            .then((report) => {
+                listReport = report;
+            });
+        return res.send(listReport);
+    }
+
 }
 
 module.exports = new APIController();

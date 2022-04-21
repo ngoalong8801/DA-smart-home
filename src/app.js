@@ -13,9 +13,10 @@ var SiteController = require("./app/controllers/siteController");
 var flash = require("connect-flash");
 
 var NotificationController = require("./app/controllers/notificationController");
-
+var report = require("./app/helpers/updateAverage");
 // check gas concentration frequently to notify
-NotificationController.checkGasConcen();
+var notificated = {val: false};
+NotificationController.checkGasConcen(notificated);
 
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
@@ -25,16 +26,10 @@ var handlerbar = require("./app/helpers/handlebarhelps");
 const db = require("./config/db");
 
 db.connect();
+report.updateAveAuto();
 // view engine setup
 app.set("views", path.join(__dirname, "resources/views"));
 
-// const hbs = exphbs.create({
-//     extname      :'hbs',
-//     layoutsDir: __dirname + '/resources/views/layouts/',
-//     defaultLayout: 'main',
-//     partialsDir  : __dirname + '/resources/views/partials'
-
-// });
 console.log(__dirname + "/resources/views/layouts");
 app.set("view engine", "hbs");
 // app.engine('handlebars', hbs.engine);

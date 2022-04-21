@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
     <div class="fan">
-      
+       <input id="aio_key"  type="hidden" value={{AIO_KEY}}>
         <div class="swiper mySwiper fan__devices__wrapper ">
             <div class="swiper-wrapper fan__devices">
                 <div class="swiper-slide fan__devices__item">
@@ -131,7 +131,9 @@
 	},
 });
 
+const aio_key = document.querySelector("#aio_key").value;
 
+console.log(aio_key)
 
 const fetchData =()=>{ 
     fetch('https://io.adafruit.com/api/v2/DAFS/feeds/fan/data')
@@ -175,7 +177,7 @@ const postData =(datas)=>{
             method: 'POST', // or 'PUT'
             headers: {
               'Content-Type': 'application/json',
-              'X-AIO-Key' : 'aio_okUa46BtMHd0wnbIbWlLdKDKMC50'
+              'X-AIO-Key' : `${aio_key}`
             },
             body: JSON.stringify(datas),
             })
@@ -242,7 +244,7 @@ const postData1 =(datas)=>{
             method: 'POST', // or 'PUT'
             headers: {
               'Content-Type': 'application/json',
-              'X-AIO-Key' : 'aio_okUa46BtMHd0wnbIbWlLdKDKMC50'
+              'X-AIO-Key' : `${aio_key}`
             },
             body: JSON.stringify(datas),
             })
